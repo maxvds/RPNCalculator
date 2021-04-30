@@ -1,4 +1,5 @@
-package assignment;
+package RCPAssignment;
+import java.util.*;
 
 public class ArrayStack<T> implements Stack<T> {
     final static int DEFAULT=10;
@@ -6,11 +7,11 @@ public class ArrayStack<T> implements Stack<T> {
     public int size=0;
     //Default constructor
     public ArrayStack(){
-        stack= (T[])new Object[DEFAULT];
+        stack= (T[]) new Object[DEFAULT];
     }
     
     public ArrayStack(int n){
-        stack=(T[])new Object[n];
+        stack= (T[]) new Object[n];
     }
     //Push method
     public void push (T element) {
@@ -25,14 +26,22 @@ public class ArrayStack<T> implements Stack<T> {
     //Peek method
     public T peek() {
         if (this.isEmpty()) {
-          throw new StackException("Peek on empty stack");
+          try {
+            throw new Exception("Peek on empty stack");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         }
         return stack[size-1];  
     }
     //Pop method
     public T pop() {
         if (this.isEmpty()) {
-          throw new StackException("Pop from empty stack");
+          try {
+            throw new Exception("Pop from empty stack");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         }
         size--;
         return stack[size];
