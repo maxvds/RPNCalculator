@@ -1,4 +1,4 @@
-package assignment;
+package RCPAssignment;
 
 public class ArrayStack<T> implements Stack<T> {
     final static int DEFAULT=10;
