@@ -41,7 +41,7 @@ public static void times() throws Exception{
 	stack.push(result); 
 	
 		}else{
-			throw Exception("too few operands");
+			throw new Exception("too few operands");
 		}
 	
 }
@@ -122,11 +122,12 @@ public static void divide() throws Exception{
 	// do the apprioaite operation 
 	try{
 		result = firstInt/ secondInt;
+		stack.push(result);
 	}catch (ArithmeticException e){
 		System.out.println("division by 0"); 
 	}
 	// push the result 
-	stack.push(result); 
+	
 	
 		}else{
 			throw new Exception("too few operands");
