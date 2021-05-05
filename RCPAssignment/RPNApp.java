@@ -1,21 +1,14 @@
 package RCPAssignment;
 //import java.util.Stack;
-import java.io.*; 
 import java.util.*;
 public class RPNApp{
 
 
-
+public static Stack<Long> stack; 
 
 public static void main(String[] args) {
 
-
-
-	String input = "3 4 * 5 2 + -";
-	Stack<Integer> stack = new ArrayStack<Integer>();
-
-	long calculation = iterate(input);
-	 
+	stack = new ArrayStack<Long>();
 }
 
 /**
@@ -24,20 +17,20 @@ public static void main(String[] args) {
  * * calls a method on each symbol
  */
 
-public static void Times(){
+public static void Times() throws Exception{
 
 	// local var result.
-	int result; 
+	long result; 
 	// take the top of the stack and store is then remove it 
 	
-	if(stack.size >=2){
+	if(stack.size() >=2){
 
 	// take the top of the stack and store is then remove it
-	int firstInt = stack.peek(); 
+	long firstInt = stack.peek(); 
 	stack.pop(); 
 
 	// take the top of the stack which was the second and the store it then remove it. 
-	int secondInt = stack.peek(); 
+	long secondInt = stack.peek(); 
 	stack.pop(); 
 
 	// do the apprioaite operation 
@@ -53,20 +46,20 @@ public static void Times(){
 }
 
 
-public static void Add(){
+public static void Add() throws Exception {
 
 	// local var result.
-	int result; 
+	long result; 
 	// take the top of the stack and store is then remove it 
 
-	if(stack.size >=2){
+	if(stack.size() >=2){
 
 	// take the top of the stack and store is then remove it
-	int firstInt = stack.peek(); 
+	long firstInt = stack.peek(); 
 	stack.pop(); 
 
 	// take the top of the stack which was the second and the store it then remove it. 
-	int secondInt = stack.peek(); 
+	long secondInt = stack.peek(); 
 	stack.pop(); 
 
 	// do the apprioaite operation 
@@ -81,20 +74,20 @@ public static void Add(){
 	
 }
 
-public static void Minus(){
+public static void Minus() throws Exception {
 
 	// local var result.
-	int result; 
+	long result; 
 	// take the top of the stack and store is then remove it 
 
-	if(stack.size >=2){
+	if(stack.size() >=2){
 
 	// take the top of the stack and store is then remove it
-	int firstInt = stack.peek(); 
+	long firstInt = stack.peek(); 
 	stack.pop(); 
 
 	// take the top of the stack which was the second and the store it then remove it. 
-	int secondInt = stack.peek(); 
+	long secondInt = stack.peek(); 
 	stack.pop(); 
 
 	// do the apprioaite operation 
@@ -109,20 +102,20 @@ public static void Minus(){
 	
 }
 
-public static void Divide(){
+public static void Divide() throws Exception {
 
 	// local var result.
-	int result; 
+	long result; 
 	// take the top of the stack and store is then remove it 
 
-	if(stack.size >=2){
+	if(stack.size() >=2){
 
 	// take the top of the stack and store is then remove it
-	int firstInt = stack.peek(); 
+	long firstInt = stack.peek(); 
 	stack.pop(); 
 
 	// take the top of the stack which was the second and the store it then remove it. 
-	int secondInt = stack.peek(); 
+	long secondInt = stack.peek(); 
 	stack.pop(); 
 
 	// do the apprioaite operation 
@@ -140,20 +133,20 @@ public static void Divide(){
 	
 }
 
-public static void Mod(){
+public static void Mod() throws Exception {
 
 	// local var result.
-	int result; 
+	long result; 
 	// take the top of the stack and store is then remove it 
 
-	if(stack.size >=2){
+	if(stack.size() >=2){
 
 	// take the top of the stack and store is then remove it
-	int firstInt = stack.peek(); 
+	long firstInt = stack.peek(); 
 	stack.pop(); 
 
 	// take the top of the stack which was the second and the store it then remove it. 
-	int secondInt = stack.peek(); 
+	long secondInt = stack.peek(); 
 	stack.pop(); 
 
 	// do the apprioaite operation 
@@ -174,12 +167,12 @@ public static void Mod(){
 }
 
 
-public static long iterate(String input){
+public static void iterate(String input){
 	char[] charArray = (input.replaceAll(" ", "")).toCharArray();
 	System.out.println(charArray);
 	for(char c : charArray){
 		if(c > 47 && c < 58){ // if c is a number
-			stack.push(c);
+			stack.push((long)c);
 		}
 		else{ // if c is + - * / % 
 			switch (c) {
@@ -202,12 +195,8 @@ public static long iterate(String input){
 				case '%':
 					Mod();
 					break;
+				}
 			}
+		}
 	}
-}
-
-
-
-}
-    
 }
