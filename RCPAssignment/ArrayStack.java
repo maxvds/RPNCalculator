@@ -1,5 +1,8 @@
 package RCPAssignment;
+<<<<<<< HEAD:RCPAssignment/ArrayStack.java
 import java.util.*;
+=======
+>>>>>>> harry:ArrayStack.java
 
 public class ArrayStack<T> implements Stack<T> {
     final static int DEFAULT=10;
