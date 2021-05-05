@@ -1,14 +1,15 @@
 package RCPAssignment;
-import java.util.Stack;
 import java.util.*;
 public class RPNApp{
 
 public static ArrayStack<Long> stack;
-public static void main(String[] args) {
+public static void main(String[] args) throws Exception {
 
-	String input = "3 4 * 5 2 + -";
-	stack = new ArrayStack<Long>(50);
-
+	String input = "0";
+	stack = new ArrayStack<Long>();
+	iterate(input);
+	System.out.println(stack.pop());
+	
 
 }
 
@@ -56,12 +57,11 @@ public static void add() throws Exception{
 	if(stack.size() >=2){
 
 	// take the top of the stack and store is then remove it
-	long firstInt = stack.peek(); 
-	stack.pop(); 
+	long firstInt = stack.pop();
+	 
 
 	// take the top of the stack which was the second and the store it then remove it. 
-	long secondInt = stack.peek(); 
-	stack.pop(); 
+	long secondInt = stack.pop();
 
 	// do the apprioaite operation 
 	result = firstInt + secondInt;
@@ -180,6 +180,7 @@ public static void iterate(String input) throws Exception{
 			switch (c) {
 				case '+':
 					add();
+					System.out.println("add");
 					break;
 
 				case '-':
@@ -188,6 +189,7 @@ public static void iterate(String input) throws Exception{
 
 				case '*':
 					times();
+					System.out.println("times");
 					break;
 
 				case '/':
