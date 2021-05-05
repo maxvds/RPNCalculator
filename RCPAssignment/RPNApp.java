@@ -1,5 +1,5 @@
 package RCPAssignment;
-//import java.util.Stack;
+import java.util.Stack;
 import java.util.*;
 public class RPNApp{
 
@@ -121,11 +121,12 @@ public static void Divide() throws Exception {
 	// do the apprioaite operation 
 	try{
 		result = firstInt/ secondInt;
+		stack.push(result);
 	}catch (ArithmeticException e){
 		System.out.println("division by 0"); 
 	}
 	// push the result 
-	stack.push(result); 
+	
 	
 		}else{
 			throw new Exception("too few operands");
@@ -177,19 +178,19 @@ public static void iterate(String input){
 		else{ // if c is + - * / % 
 			switch (c) {
 				case '+':
-					Add();
+					add();
 					break;
 
 				case '-':
-					Minus();
+					minus();
 					break;
 
 				case '*':
-					Times();
+					times();
 					break;
 
 				case '/':
-					Divide();
+					divide();
 					break;
 
 				case '%':
