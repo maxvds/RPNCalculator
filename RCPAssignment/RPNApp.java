@@ -1,17 +1,16 @@
 package RCPAssignment;
 import java.util.*;
+
 public class RPNApp{
 
 public static ArrayStack<Long> stack;
 public static void main(String[] args) throws Exception {
 
-	String input = "3 4 * 5 2 + -";
+	String input = "0 2 %";
 	stack = new ArrayStack<Long>();
 	System.out.println("Input : " +input);
 	iterate(input);
-	System.out.println(stack.pop());
-	
-
+	System.out.println(stack.peek()); 
 	stack = new ArrayStack<Long>();
 }
 
@@ -27,7 +26,7 @@ public static void times() throws Exception{
 	long result; 
 	// take the top of the stack and store is then remove it 
 	
-	if(stack.size() >=2){
+	try{
 
 	// take the top of the stack and store is then remove it
 	long firstInt = stack.peek(); 
@@ -43,8 +42,8 @@ public static void times() throws Exception{
 	// push the result 
 	stack.push(result); 
 	
-		}else{
-			throw new Exception("too few operands");
+		}catch(ArrayIndexOutOfBoundsException e){
+			System.out.println("Error: too few operands"); 
 		}
 	
 }
@@ -52,11 +51,11 @@ public static void times() throws Exception{
 
 public static void add() throws Exception {
 
+
+	try{
 	// local var result.
 	long result; 
 	// take the top of the stack and store is then remove it 
-
-	if(stack.size() >=2){
 
 	// take the top of the stack and store is then remove it
 	long firstInt = stack.pop();
@@ -70,10 +69,9 @@ public static void add() throws Exception {
 	 
 	// push the result 
 	stack.push(result); 
-	
-		}else{
-			throw new Exception("too few operands");
-		}
+	} catch(ArrayIndexOutOfBoundsException e){
+		System.out.println("Error: too few operands"); 
+	}
 	
 }
 
@@ -83,7 +81,7 @@ public static void minus() throws Exception {
 	long result; 
 	// take the top of the stack and store is then remove it 
 
-	if(stack.size() >=2){
+	try{
 
 	// take the top of the stack and store is then remove it
 	
@@ -100,8 +98,8 @@ public static void minus() throws Exception {
 	// push the result 
 	stack.push(result); 
 	
-		}else{
-			throw new Exception("too few operands");
+		}catch(ArrayIndexOutOfBoundsException e){
+			System.out.println("Error: too few operands"); 
 		}
 	
 }
@@ -112,29 +110,29 @@ public static void divide() throws Exception {
 	long result; 
 	// take the top of the stack and store is then remove it 
 
-	if(stack.size() >=2){
-
-	// take the top of the stack and store is then remove it
-	long firstInt = stack.peek(); 
-	stack.pop(); 
-
-	// take the top of the stack which was the second and the store it then remove it. 
-	long secondInt = stack.peek(); 
-	stack.pop(); 
-
-	// do the apprioaite operation 
 	try{
-		result = firstInt/ secondInt;
-		stack.push(result);
-	}catch (ArithmeticException e){
-		System.out.println("division by 0"); 
-	}
+
+		// take the top of the stack and store is then remove it
+		long firstInt = stack.peek(); 
+		stack.pop(); 
+
+		// take the top of the stack which was the second and the store it then remove it. 
+		long secondInt = stack.peek(); 
+		stack.pop(); 
+
+		// do the apprioaite operation 
+		try{
+			result = firstInt/ secondInt;
+			// push the result
+			stack.push(result);
+		}catch (ArithmeticException e){
+			System.out.println("division by 0"); 
+		}
 	// push the result 
 	
-	
-		}else{
-			throw new Exception("too few operands");
-		}
+	}catch(ArrayIndexOutOfBoundsException e){
+		System.out.println("Error: too few operands"); 
+	}
 	
 }
 
@@ -144,7 +142,7 @@ public static void mod() throws Exception {
 	long result; 
 	// take the top of the stack and store is then remove it 
 
-	if(stack.size() >=2){
+	try{
 
 	// take the top of the stack and store is then remove it
 	long firstInt = stack.peek(); 
@@ -158,16 +156,16 @@ public static void mod() throws Exception {
 	result = firstInt % secondInt;
 	 
 	// push the result 
-	if(result != 0){
-		stack.push(result); 
-	}else{
-		throw new Exception("remainder by 0"); 
+	stack.push(result); 
+
+	}catch(ArrayIndexOutOfBoundsException e){
+		System.out.println("Error: too few operands"); 
+	}catch(ArithmeticException e){
+		System.out.println("Error: Mod by zero"); 
 	}
 	
 	
-		}else{
-			throw new Exception("too few operands");
-		}
+		
 	
 }
 
@@ -175,7 +173,6 @@ public static void mod() throws Exception {
 public static void iterate(String input) throws Exception{
 	int i = 0;
 	char[] charArray = (input.replaceAll(" ", "")).toCharArray();
-	System.out.println(charArray);
 	for(char c : charArray){
 		if(c > '/' && c < ':'){ // if c is a number
 			i = c - '0';
