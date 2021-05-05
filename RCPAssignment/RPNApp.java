@@ -11,6 +11,7 @@ public static void main(String[] args) throws Exception {
 	System.out.println(stack.pop());
 	
 
+	stack = new ArrayStack<Long>();
 }
 
 /**
@@ -24,7 +25,7 @@ public static void times() throws Exception{
 	// local var result.
 	long result; 
 	// take the top of the stack and store is then remove it 
-
+	
 	if(stack.size() >=2){
 
 	// take the top of the stack and store is then remove it
@@ -48,7 +49,7 @@ public static void times() throws Exception{
 }
 
 
-public static void add() throws Exception{
+public static void add() throws Exception {
 
 	// local var result.
 	long result; 
@@ -75,7 +76,7 @@ public static void add() throws Exception{
 	
 }
 
-public static void minus() throws Exception{
+public static void minus() throws Exception {
 
 	// local var result.
 	long result; 
@@ -103,13 +104,13 @@ public static void minus() throws Exception{
 	
 }
 
-public static void divide() throws Exception{
+public static void divide() throws Exception {
 
 	// local var result.
 	long result; 
 	// take the top of the stack and store is then remove it 
 
-	if(stack.size >=2){
+	if(stack.size() >=2){
 
 	// take the top of the stack and store is then remove it
 	long firstInt = stack.peek(); 
@@ -135,13 +136,13 @@ public static void divide() throws Exception{
 	
 }
 
-public static void mod() throws Exception{
+public static void mod() throws Exception {
 
 	// local var result.
 	long result; 
 	// take the top of the stack and store is then remove it 
 
-	if(stack.size >=2){
+	if(stack.size() >=2){
 
 	// take the top of the stack and store is then remove it
 	long firstInt = stack.peek(); 
@@ -174,7 +175,7 @@ public static void iterate(String input) throws Exception{
 	System.out.println(charArray);
 	for(char c : charArray){
 		if(c > 47 && c < 58){ // if c is a number
-			stack.push((long) c);
+			stack.push((long)c);
 		}
 		else{ // if c is + - * / % 
 			switch (c) {
@@ -199,12 +200,8 @@ public static void iterate(String input) throws Exception{
 				case '%':
 					mod();
 					break;
+				}
 			}
+		}
 	}
-}
-
-
-
-}
-    
 }
