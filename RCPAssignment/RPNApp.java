@@ -6,7 +6,7 @@ public class RPNApp{
 public static void main(String[] args) {
 
 	String input = "3 4 * 5 2 + -";
-	//	Stack<Integer> stack = new ArrayStack<Integer>();
+	Stack<Integer> stack = new ArrayStack<Integer>();
 
 	long calculation = iterate(input);
 
@@ -18,13 +18,13 @@ public static void main(String[] args) {
  * * calls a method on each symbol
  */
 
-public void Times(){
+public static void times(){
 
 	// local var result.
 	int result; 
 	// take the top of the stack and store is then remove it 
 
-	if(stack.size >=2){
+	if(stack.size() >=2){
 
 	// take the top of the stack and store is then remove it
 	int firstInt = stack.peek(); 
@@ -47,7 +47,7 @@ public void Times(){
 }
 
 
-public void Addition(){
+public static void add(){
 
 	// local var result.
 	int result; 
@@ -70,12 +70,12 @@ public void Addition(){
 	stack.push(result); 
 	
 		}else{
-			throw new OpertionException("too few operands");
+			throw new Exception("too few operands");
 		}
 	
 }
 
-public void Minus(){
+public static void minus(){
 
 	// local var result.
 	int result; 
@@ -98,12 +98,12 @@ public void Minus(){
 	stack.push(result); 
 	
 		}else{
-			throw new OpertionException("too few operands");
+			throw new OperationException("too few operands");
 		}
 	
 }
 
-public void Divide(){
+public static void divide(){
 
 	// local var result.
 	int result; 
@@ -134,7 +134,7 @@ public void Divide(){
 	
 }
 
-public void Mod(){
+public static void mod(){
 
 	// local var result.
 	int result; 
@@ -178,23 +178,23 @@ public static long iterate(String input){
 		else{ // if c is + - * / % 
 			switch (c) {
 				case '+':
-					Add();
+					add();
 					break;
 
 				case '-':
-					Minus();
+					minus();
 					break;
 
 				case '*':
-					Times();
+					times();
 					break;
 
 				case '/':
-					Divide();
+					divide();
 					break;
 
 				case '%':
-					Modulo();
+					mod();
 					break;
 			}
 	}
