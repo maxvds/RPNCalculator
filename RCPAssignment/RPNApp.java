@@ -49,12 +49,9 @@ public static long iterate(String input){
 	}
 }
 
-<<<<<<< HEAD:RCPAssignment/RPNApp.java
 
 
 }
     
-=======
 }
 }
->>>>>>> harry:RPNApp.java
