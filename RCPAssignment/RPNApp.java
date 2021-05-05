@@ -5,8 +5,9 @@ public class RPNApp{
 public static ArrayStack<Long> stack;
 public static void main(String[] args) throws Exception {
 
-	String input = "0";
+	String input = "3 4 * 5 2 + -";
 	stack = new ArrayStack<Long>();
+	System.out.println("Input : " +input);
 	iterate(input);
 	System.out.println(stack.pop());
 	
@@ -85,6 +86,7 @@ public static void minus() throws Exception {
 	if(stack.size() >=2){
 
 	// take the top of the stack and store is then remove it
+	
 	long firstInt = stack.peek(); 
 	stack.pop(); 
 
@@ -171,11 +173,13 @@ public static void mod() throws Exception {
 
 
 public static void iterate(String input) throws Exception{
+	int i = 0;
 	char[] charArray = (input.replaceAll(" ", "")).toCharArray();
 	System.out.println(charArray);
 	for(char c : charArray){
-		if(c > 47 && c < 58){ // if c is a number
-			stack.push((long)c);
+		if(c > '/' && c < ':'){ // if c is a number
+			i = c - '0';
+			stack.push((long)i);
 		}
 		else{ // if c is + - * / % 
 			switch (c) {
