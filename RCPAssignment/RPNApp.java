@@ -1,14 +1,14 @@
 package RCPAssignment;
-//import java.util.Stack;
+import java.util.Stack;
 import java.util.*;
 public class RPNApp{
 
+public static ArrayStack<Long> stack;
 public static void main(String[] args) {
 
 	String input = "3 4 * 5 2 + -";
-	Stack<Integer> stack = new ArrayStack<Integer>();
+	stack = new ArrayStack<Long>(50);
 
-	long calculation = iterate(input);
 
 }
 
@@ -18,20 +18,20 @@ public static void main(String[] args) {
  * * calls a method on each symbol
  */
 
-public static void times(){
+public static void times() throws Exception{
 
 	// local var result.
-	int result; 
+	long result; 
 	// take the top of the stack and store is then remove it 
 
 	if(stack.size() >=2){
 
 	// take the top of the stack and store is then remove it
-	int firstInt = stack.peek(); 
+	long firstInt = stack.peek(); 
 	stack.pop(); 
 
 	// take the top of the stack which was the second and the store it then remove it. 
-	int secondInt = stack.peek(); 
+	long secondInt = stack.peek(); 
 	stack.pop(); 
 
 	// do the apprioaite operation 
@@ -41,26 +41,26 @@ public static void times(){
 	stack.push(result); 
 	
 		}else{
-			throw new OpertionException("too few operands");
+			throw Exception("too few operands");
 		}
 	
 }
 
 
-public static void add(){
+public static void add() throws Exception{
 
 	// local var result.
-	int result; 
+	long result; 
 	// take the top of the stack and store is then remove it 
 
-	if(stack.size >=2){
+	if(stack.size() >=2){
 
 	// take the top of the stack and store is then remove it
-	int firstInt = stack.peek(); 
+	long firstInt = stack.peek(); 
 	stack.pop(); 
 
 	// take the top of the stack which was the second and the store it then remove it. 
-	int secondInt = stack.peek(); 
+	long secondInt = stack.peek(); 
 	stack.pop(); 
 
 	// do the apprioaite operation 
@@ -75,20 +75,20 @@ public static void add(){
 	
 }
 
-public static void minus(){
+public static void minus() throws Exception{
 
 	// local var result.
-	int result; 
+	long result; 
 	// take the top of the stack and store is then remove it 
 
-	if(stack.size >=2){
+	if(stack.size() >=2){
 
 	// take the top of the stack and store is then remove it
-	int firstInt = stack.peek(); 
+	long firstInt = stack.peek(); 
 	stack.pop(); 
 
 	// take the top of the stack which was the second and the store it then remove it. 
-	int secondInt = stack.peek(); 
+	long secondInt = stack.peek(); 
 	stack.pop(); 
 
 	// do the apprioaite operation 
@@ -98,25 +98,25 @@ public static void minus(){
 	stack.push(result); 
 	
 		}else{
-			throw new OperationException("too few operands");
+			throw new Exception("too few operands");
 		}
 	
 }
 
-public static void divide(){
+public static void divide() throws Exception{
 
 	// local var result.
-	int result; 
+	long result; 
 	// take the top of the stack and store is then remove it 
 
 	if(stack.size >=2){
 
 	// take the top of the stack and store is then remove it
-	int firstInt = stack.peek(); 
+	long firstInt = stack.peek(); 
 	stack.pop(); 
 
 	// take the top of the stack which was the second and the store it then remove it. 
-	int secondInt = stack.peek(); 
+	long secondInt = stack.peek(); 
 	stack.pop(); 
 
 	// do the apprioaite operation 
@@ -129,25 +129,25 @@ public static void divide(){
 	stack.push(result); 
 	
 		}else{
-			throw new OpertionException("too few operands");
+			throw new Exception("too few operands");
 		}
 	
 }
 
-public static void mod(){
+public static void mod() throws Exception{
 
 	// local var result.
-	int result; 
+	long result; 
 	// take the top of the stack and store is then remove it 
 
 	if(stack.size >=2){
 
 	// take the top of the stack and store is then remove it
-	int firstInt = stack.peek(); 
+	long firstInt = stack.peek(); 
 	stack.pop(); 
 
 	// take the top of the stack which was the second and the store it then remove it. 
-	int secondInt = stack.peek(); 
+	long secondInt = stack.peek(); 
 	stack.pop(); 
 
 	// do the apprioaite operation 
@@ -157,23 +157,23 @@ public static void mod(){
 	if(result != 0){
 		stack.push(result); 
 	}else{
-		throw new StackExpection("remainder by 0"); 
+		throw new Exception("remainder by 0"); 
 	}
 	
 	
 		}else{
-			throw new OpertionException("too few operands");
+			throw new Exception("too few operands");
 		}
 	
 }
 
 
-public static long iterate(String input){
+public static void iterate(String input) throws Exception{
 	char[] charArray = (input.replaceAll(" ", "")).toCharArray();
 	System.out.println(charArray);
 	for(char c : charArray){
 		if(c > 47 && c < 58){ // if c is a number
-			stack.push(c);
+			stack.push((long) c);
 		}
 		else{ // if c is + - * / % 
 			switch (c) {
