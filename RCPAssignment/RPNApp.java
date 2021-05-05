@@ -1,15 +1,21 @@
 package RCPAssignment;
 //import java.util.Stack;
+import java.io.*; 
 import java.util.*;
 public class RPNApp{
 
+
+
+
 public static void main(String[] args) {
 
+
+
 	String input = "3 4 * 5 2 + -";
-	//	Stack<Integer> stack = new ArrayStack<Integer>();
+	Stack<Integer> stack = new ArrayStack<Integer>();
 
 	long calculation = iterate(input);
-
+	 
 }
 
 /**
@@ -18,12 +24,12 @@ public static void main(String[] args) {
  * * calls a method on each symbol
  */
 
-public void Times(){
+public static void Times(){
 
 	// local var result.
 	int result; 
 	// take the top of the stack and store is then remove it 
-
+	
 	if(stack.size >=2){
 
 	// take the top of the stack and store is then remove it
@@ -41,13 +47,13 @@ public void Times(){
 	stack.push(result); 
 	
 		}else{
-			throw new OpertionException("too few operands");
+			throw new Exception("too few operands");
 		}
 	
 }
 
 
-public void Addition(){
+public static void Add(){
 
 	// local var result.
 	int result; 
@@ -70,12 +76,12 @@ public void Addition(){
 	stack.push(result); 
 	
 		}else{
-			throw new OpertionException("too few operands");
+			throw new Exception("too few operands");
 		}
 	
 }
 
-public void Minus(){
+public static void Minus(){
 
 	// local var result.
 	int result; 
@@ -98,12 +104,12 @@ public void Minus(){
 	stack.push(result); 
 	
 		}else{
-			throw new OpertionException("too few operands");
+			throw new Exception("too few operands");
 		}
 	
 }
 
-public void Divide(){
+public static void Divide(){
 
 	// local var result.
 	int result; 
@@ -129,12 +135,12 @@ public void Divide(){
 	stack.push(result); 
 	
 		}else{
-			throw new OpertionException("too few operands");
+			throw new Exception("too few operands");
 		}
 	
 }
 
-public void Mod(){
+public static void Mod(){
 
 	// local var result.
 	int result; 
@@ -157,12 +163,12 @@ public void Mod(){
 	if(result != 0){
 		stack.push(result); 
 	}else{
-		throw new StackExpection("remainder by 0"); 
+		throw new Exception("remainder by 0"); 
 	}
 	
 	
 		}else{
-			throw new OpertionException("too few operands");
+			throw new Exception("too few operands");
 		}
 	
 }
@@ -194,7 +200,7 @@ public static long iterate(String input){
 					break;
 
 				case '%':
-					Modulo();
+					Mod();
 					break;
 			}
 	}
