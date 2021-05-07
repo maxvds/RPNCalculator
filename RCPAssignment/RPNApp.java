@@ -5,12 +5,12 @@ public class RPNApp{
 
 public static ArrayStack<Long> stack;
 public static void main(String[] args) throws Exception {
-
-	String input = "1 1 2 3 4 1 r";
+	String input = "3 4 * 5 2 + -";
 	stack = new ArrayStack<Long>();
 	System.out.println("Input : " +input);
 	iterate(input);
 	PrintStack(stack);
+	
 }
 
 /**
@@ -114,7 +114,7 @@ public static void minus(){
 	stack.pop(); 
 
 	// do the apprioaite operation 
-	result = firstInt - secondInt;
+	result = secondInt - firstInt  ;
 	 
 	// push the result 
 	stack.push(result); 
@@ -143,7 +143,7 @@ public static void divide(){
 
 		// do the apprioaite operation 
 		try{
-			result = firstInt/ secondInt;
+			result = secondInt / firstInt;
 			// push the result
 			stack.push(result);
 		}catch (ArithmeticException e){
@@ -174,7 +174,7 @@ public static void mod(){
 	stack.pop(); 
 
 	// do the apprioaite operation 
-	result = firstInt % secondInt;
+	result = secondInt % firstInt  ;
 	 
 	// push the result 
 	stack.push(result); 
@@ -247,45 +247,55 @@ public static void rOperator(){
 
 
 }
+/**
+ * Method for checking if tokens are numbers.
+ * @param str token from input
+ * @return boolean if its a number or not
+ */
+public static boolean isNumber(String str) { 
+	try {  
+	  Double.parseDouble(str);  
+	  return true;
+	} catch(NumberFormatException e){  
+	  return false;  
+	}  
+  }
 
 
 public static void iterate(String input){
-	int i = 0;
-	char[] charArray = (input.replaceAll(" ", "")).toCharArray();
-	for(char c : charArray){
-		if(c > '/' && c < ':'){ // if c is a number
-			i = c - '0';
-			stack.push((long)i);
+	String[] stringArray = input.split(" ");
+	for(String c : stringArray){
+		if(isNumber(c)){ // if c is a number
+			stack.push(Long.parseLong(c));
 		}
 		else{ // if c is + - * / % 
 			switch (c) {
-				case '+':
+				case "+":
 					add();
-					System.out.println("add");
 					break;
 
-				case '-':
+				case "-":
 					minus();
 					break;
 
-				case '*':
+				case "*":
 					times();
 					System.out.println("times");
 					break;
 
-				case '/':
+				case "/":
 					divide();
 					break;
 
-				case '%':
+				case "%":
 					mod();
 					break;
 
-				case 'c':
+				case "c":
 					cOperator();
 					break; 
 
-				case 'r': 
+				case "r": 
 					rOperator(); 
 					break; 
 				}
