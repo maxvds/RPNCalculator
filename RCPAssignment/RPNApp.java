@@ -6,12 +6,11 @@ public class RPNApp{
 public static ArrayStack<Long> stack;
 public static void main(String[] args) throws Exception {
 
-	String input = "0 2 %";
+	String input = "1 1 2 3 4 1 r";
 	stack = new ArrayStack<Long>();
 	System.out.println("Input : " +input);
 	iterate(input);
-	System.out.println(stack.peek()); 
-	stack = new ArrayStack<Long>();
+	PrintStack(stack);
 }
 
 /**
@@ -19,8 +18,30 @@ public static void main(String[] args) throws Exception {
  * * pushes each number into a Stack
  * * calls a method on each symbol
  */
+public static void PrintStack(Stack<Long> s){ 
 
-public static void times() throws Exception{
+    // If stack is empty then return
+    if (s.isEmpty())
+        return; 
+     
+    long x = s.peek();
+ 
+    // Pop the top element of the stack
+    s.pop();
+ 
+    // Recursively call the function PrintStack
+    PrintStack(s);
+ 
+    // Print the stack element starting
+    // from the bottom
+    System.out.print(x + " ");
+ 
+    // Push the same element onto the stack
+    // to preserve the order
+    s.push(x);
+}
+
+public static void times(){
 
 	// local var result.
 	long result; 
@@ -49,7 +70,7 @@ public static void times() throws Exception{
 }
 
 
-public static void add() throws Exception {
+public static void add(){
 
 
 	try{
@@ -75,7 +96,7 @@ public static void add() throws Exception {
 	
 }
 
-public static void minus() throws Exception {
+public static void minus(){
 
 	// local var result.
 	long result; 
@@ -104,7 +125,7 @@ public static void minus() throws Exception {
 	
 }
 
-public static void divide() throws Exception {
+public static void divide(){
 
 	// local var result.
 	long result; 
@@ -136,7 +157,7 @@ public static void divide() throws Exception {
 	
 }
 
-public static void mod() throws Exception {
+public static void mod(){
 
 	// local var result.
 	long result; 
@@ -163,14 +184,72 @@ public static void mod() throws Exception {
 	}catch(ArithmeticException e){
 		System.out.println("Error: Mod by zero"); 
 	}
-	
-	
+
+
+}
+
+public static void cOperator(){
+
+	try{ 
+		// take the top element use it to expand the 2 element 
+		long quantity  = stack.peek(); 
+		stack.pop(); 
+		// second element 
+		long amount = stack.peek(); 
+		stack.pop(); 
+		// pushes second element by quantity amount of times. 
+		for(int i = 0;i<quantity;i++){
+			stack.push(amount); 
+
+		}
+	}catch(ArrayIndexOutOfBoundsException e){
+		System.out.println("Error: too few operands"); 
+	}
 		
+}	
+
+public static void rOperator(){ 
+
+	try{
+
+		// quantiy which are moving curr back 
+		long flipX = stack.peek(); 
+		stack.pop();
+
+		// temp array for all the numbers which are being moved infront of curr
+		long[] temp = new long[(int)(flipX-1)]; 
+
+		// removing curr to be placed down the stack by filpX amount. 
+		long curr = stack.peek(); 
+		stack.pop(); 
+
+		
+		// first placing the top of the stack at the back of the array and progressive moving down the stack
+		for(int i = 0;i < temp.length;i++){
+			temp[i] = stack.peek(); 
+			stack.pop();  
+		}
+
+		// adding curr onto the correct postion in the stack. 
 	
+		stack.push(curr); 
+		
+		// adding the rest of the nums back onto the stack. 
+		for(int i = 0;i<temp.length;i++){
+			stack.push(temp[(temp.length-1)-i]); 
+		}
+
+
+
+	}catch(ArrayIndexOutOfBoundsException e){
+		System.out.println("Error: too few operands"); 
+	}
+
+
 }
 
 
-public static void iterate(String input) throws Exception{
+public static void iterate(String input){
 	int i = 0;
 	char[] charArray = (input.replaceAll(" ", "")).toCharArray();
 	for(char c : charArray){
@@ -201,6 +280,14 @@ public static void iterate(String input) throws Exception{
 				case '%':
 					mod();
 					break;
+
+				case 'c':
+					cOperator();
+					break; 
+
+				case 'r': 
+					rOperator(); 
+					break; 
 				}
 			}
 		}
