@@ -6,7 +6,7 @@ public class RPNApp{
 public static ArrayStack<Long> stack;
 public static void main(String[] args) throws Exception {
 
-	String input = "1 1 2 3 4 1 r";
+	String input = "1 1 10 ( d 3 r + o )";
 	stack = new ArrayStack<Long>();
 	System.out.println("Input : " +input);
 	iterate(input);
@@ -114,7 +114,7 @@ public static void minus(){
 	stack.pop(); 
 
 	// do the apprioaite operation 
-	result = firstInt - secondInt;
+	result = secondInt - firstInt;
 	 
 	// push the result 
 	stack.push(result); 
@@ -143,7 +143,7 @@ public static void divide(){
 
 		// do the apprioaite operation 
 		try{
-			result = firstInt/ secondInt;
+			result = secondInt / firstInt;
 			// push the result
 			stack.push(result);
 		}catch (ArithmeticException e){
@@ -174,7 +174,7 @@ public static void mod(){
 	stack.pop(); 
 
 	// do the apprioaite operation 
-	result = firstInt % secondInt;
+	result = secondInt % firstInt;
 	 
 	// push the result 
 	stack.push(result); 
@@ -220,11 +220,13 @@ public static void rOperator(){
 		long[] temp = new long[(int)(flipX-1)]; 
 
 		// removing curr to be placed down the stack by filpX amount. 
+		
+
 		long curr = stack.peek(); 
 		stack.pop(); 
-
 		
 		// first placing the top of the stack at the back of the array and progressive moving down the stack
+
 		for(int i = 0;i < temp.length;i++){
 			temp[i] = stack.peek(); 
 			stack.pop();  
@@ -244,49 +246,129 @@ public static void rOperator(){
 	}catch(ArrayIndexOutOfBoundsException e){
 		System.out.println("Error: too few operands"); 
 	}
+}
+public static void dOperator(){
 
+	
+	try{
+		// take the top of the stack 
+		long topOfStack = stack.peek(); 
+		// push it to the top
+		stack.push(topOfStack); 
 
+	}catch(ArrayIndexOutOfBoundsException e){
+		System.out.println("Error: too few operands"); 
+	} 
+	
+}
+
+public static void oOperator(){ 
+
+	
+	try{
+		// print the top of the stack. 
+		System.out.print(stack.peek() + " ");
+
+	}catch(ArrayIndexOutOfBoundsException e){
+		System.out.println("Error: too few operands"); 
+	} 
+	
 }
 
 
-public static void iterate(String input){
-	int i = 0;
-	char[] charArray = (input.replaceAll(" ", "")).toCharArray();
-	for(char c : charArray){
-		if(c > '/' && c < ':'){ // if c is a number
-			i = c - '0';
-			stack.push((long)i);
+public static void parenthese(String s)throws Exception{
+
+	String addedString = "";
+	long topStack = stack.peek(); 
+	stack.pop(); 
+
+	for(int i = 0; i < topStack ; i++ ){
+		addedString += s; 
+	}
+
+	iterate(addedString); 
+}
+
+
+
+/**
+ * Method for checking if tokens are numbers.
+ * @param str token from input
+ * @return boolean if its a number or not
+ */
+public static boolean isNumber(String str) { 
+	try {  
+	  Double.parseDouble(str);  
+	  return true;
+	} catch(NumberFormatException e){  
+	  return false;  
+	}  
+  }
+
+
+  public static void iterate(String input) throws Exception{
+	String[] stringArray = input.split(" ");
+	for(int i = 0;i< stringArray.length;i++){
+		if(isNumber(stringArray[i])){ // if c is a number
+			stack.push(Long.parseLong(stringArray[i]));
 		}
 		else{ // if c is + - * / % 
-			switch (c) {
-				case '+':
+			switch (stringArray[i]) {
+				case "+":
 					add();
-					System.out.println("add");
 					break;
 
-				case '-':
+				case "-":
 					minus();
 					break;
 
-				case '*':
+				case "*":
 					times();
-					System.out.println("times");
 					break;
 
-				case '/':
+				case "/":
 					divide();
 					break;
 
-				case '%':
+				case "%":
 					mod();
 					break;
 
-				case 'c':
+				case "c":
 					cOperator();
 					break; 
 
-				case 'r': 
+				case "r": 
 					rOperator(); 
+					break; 
+
+				case "d": 
+					dOperator(); 
+					break; 
+				
+				case "o": 
+					oOperator(); 
+					break; 
+				
+				case "(": 
+					boolean con = true; 
+					String s = ""; 
+				
+					do{
+						switch (stringArray[i+2]){
+							case ")": 
+							con = false; 
+							break; 
+
+							case "(": 
+							throw new Exception("Error: unmatched parentheses"); 
+		
+						}
+						s += (stringArray[i+1] + " "); 
+						i++; 
+					}while(con); 
+
+					parenthese(s);
 					break; 
 				}
 			}
