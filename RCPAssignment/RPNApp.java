@@ -19,8 +19,8 @@ public class RPNApp{
  	 * @throws Exception if 
 	 */
 	public static void main(String[] args) throws Exception {
-	run(); 
-}
+		run(); 
+	}
 
 	/**
 	 * propts the user for a string then call iterate method on the string. 
@@ -33,6 +33,7 @@ public class RPNApp{
 		String s; 
 
 		while(true){
+			stack = new ArrayStack<Long>();
 			s = scan.nextLine();
 			iterate(s);
 		}
