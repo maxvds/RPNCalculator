@@ -5,9 +5,8 @@ public class RPNApp{
 
 public static ArrayStack<Long> stack;
 public static void main(String[] args) throws Exception {
-	String input = "3 4 * 5 2 + -";
+	String input = "1 2 3 4 - !";
 	stack = new ArrayStack<Long>();
-	System.out.println("Input : " +input);
 	iterate(input);
 	PrintStack(stack);
 	
@@ -71,9 +70,7 @@ public static void times(){
 
 
 public static void add(){
-
-
-	try{
+		try{
 	// local var result.
 	long result; 
 	// take the top of the stack and store is then remove it 
@@ -264,42 +261,85 @@ public static boolean isNumber(String str) {
 
 public static void iterate(String input){
 	String[] stringArray = input.split(" ");
+	int index = 0;
 	for(String c : stringArray){
+		System.out.println(stringArray[index]);
+
 		if(isNumber(c)){ // if c is a number
 			stack.push(Long.parseLong(c));
+			index++;
 		}
+		
 		else{ // if c is + - * / % 
 			switch (c) {
+				case "!" :
+				break;
+				
 				case "+":
+					if(("!".equals(stringArray[index+1]))){ // duplicate this code for all different methods
+						System.out.println("Exclamation Operator Detected");
+						
+						for(int n = 0; n < stack.size; n++){
+							add();
+						}
+					}
 					add();
 					break;
-
+					
 				case "-":
+					if(("!".equals(stringArray[index+1]))){ // duplicate this code for all different methods
+						System.out.println("Exclamation Operator Detected");
+						
+						for(int n = 0; n < stack.size; n++){
+							minus();
+						}
+					}
 					minus();
 					break;
-
+					
 				case "*":
-					times();
-					System.out.println("times");
-					break;
-
+						if(("!".equals(stringArray[index+1]))){ // duplicate this code for all different methods
+							System.out.println("Exclamation Operator Detected");
+							
+							for(int n = 0; n < stack.size; n++){
+								times();
+							}
+						}
+						times();
+						break;
+						
 				case "/":
-					divide();
-					break;
-
+						if(("!".equals(stringArray[index+1]))){ // duplicate this code for all different methods
+							System.out.println("Exclamation Operator Detected");
+							
+							for(int n = 0; n < stack.size; n++){
+								divide();
+							}
+						}
+						divide();
+						break;
+						
 				case "%":
-					mod();
-					break;
-
+						if(("!".equals(stringArray[index+1]))){ // duplicate this code for all different methods
+							System.out.println("Exclamation Operator Detected");
+							
+							for(int n = 0; n < stack.size; n++){
+								mod();
+							}
+						}
+						mod();
+						break;
+						
 				case "c":
-					cOperator();
-					break; 
-
+						cOperator();
+						break; 
+				
 				case "r": 
 					rOperator(); 
 					break; 
-				}
 			}
+			index++;
 		}
 	}
+}
 }
