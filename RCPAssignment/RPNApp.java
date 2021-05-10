@@ -8,19 +8,21 @@ import java.util.*;
  */
 public class RPNApp{
 
-	/**
- 	*Data field for the current stack. 
-	*/
-	public static ArrayStack<Long> stack;
+/**
+ * Data field for the current stack. 
+ */
+public static ArrayStack<Long> stack;
 
-	/**
- 	 * runs run() which prompts the user for an input. 
- 	 * @param args 
- 	 * @throws Exception if 
-	 */
-	public static void main(String[] args) throws Exception {
-		run(); 
-	}
+/**
+ *  runs run() which prompts the user for an input. 
+ * @param args 
+ * @throws Exception if 
+ */
+public static void main(String[] args) throws Exception {
+
+	run(); 
+	System.out.println(stack);
+}
 
 	/**
 	 * propts the user for a string then call iterate method on the string. 
@@ -28,18 +30,15 @@ public class RPNApp{
 	 */
 	public static void run() throws Exception{
 
-		Scanner scan = new Scanner(System.in); 
-		String s; 
+	Scanner scan = new Scanner(System.in); 
+	stack = new ArrayStack<Long>();
 
-		while(true){
-			stack = new ArrayStack<Long>();
-			s = scan.nextLine();
-			iterate(s);
-		
+	String s; 
+	s = scan.nextLine();
+	System.out.println("Input : " + s);
+	iterate(s); 
+	PrintStack(stack);
 
-	}
-	
-	
 }
 
 	public static void PrintStack(Stack<Long> s){ 
@@ -333,17 +332,13 @@ public class RPNApp{
 			stack.push(Long.parseLong(stringArray[i]));
 		}
 		
-
-
-		else{
-			
-			try{// if c is + - * / % 
+		else{ // if c is + - * / % 
 			switch (stringArray[i]) {
 				case "!" :
 				break;
 				
 				case "+":
-					if(("!".equals(stringArray[i+1]))){ // 
+					if(( i+1 < stringArray.length) && ("!".equals(stringArray[i+1]))){ // 
 						
 						for(int n = 0; n < stack.size; n++){
 							add();
@@ -353,7 +348,7 @@ public class RPNApp{
 					break;
 					
 				case "-":
-					if(("!".equals(stringArray[i+1]))){ // 
+					if(( i+1 < stringArray.length) && ("!".equals(stringArray[i+1]))){ // 
 
 						
 						for(int n = 0; n < stack.size; n++){
@@ -364,7 +359,7 @@ public class RPNApp{
 					break;
 					
 				case "*":
-						if(("!".equals(stringArray[i+1]))){ // 
+						if(( i+1 < stringArray.length) && ("!".equals(stringArray[i+1]))){ // 
 							for(int n = 0; n < stack.size; n++){
 								times();
 							}
@@ -373,7 +368,7 @@ public class RPNApp{
 						break;
 						
 				case "/":
-						if(("!".equals(stringArray[i+1]))){ // 
+						if(( i+1 < stringArray.length) && ("!".equals(stringArray[i+1]))){ // 
 							
 							for(int n = 0; n < stack.size; n++){
 								divide();
@@ -383,7 +378,7 @@ public class RPNApp{
 						break;
 						
 				case "%":
-						if(("!".equals(stringArray[i+1]))){ // 
+						if(( i+1 < stringArray.length) && ("!".equals(stringArray[i+1]))){ // 
 							
 							for(int n = 0; n < stack.size; n++){
 								mod();
@@ -427,14 +422,8 @@ public class RPNApp{
 					}while(con); 
 					parenthese(s);
 					break; 
-					
-					default:
-						throw new Exception("Error: bad token '"+ stringArray[i] +"'");}
-
-				}catch(Exception e){
-					System.out.println("Error: bad token '"+ stringArray[i] +"'");
 				}
-			} 
+			}
 		}
 	}
 				
