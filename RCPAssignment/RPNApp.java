@@ -18,23 +18,28 @@ public static ArrayStack<Long> stack;
  * @param args 
  * @throws Exception if 
  */
-public static void main(String[] args) throws Exception {
-	while(true){
-		run();
+	public static void main(String[] args) throws Exception {
+		Scanner scan = new Scanner(System.in);
+		run(scan);
 	}
-}
 
 	/**
 	 * propts the user for a string then call iterate method on the string. 
 	 * @throws Exception
 	 */
-	public static void run() throws Exception{
-	Scanner scan = new Scanner(System.in); 
-	stack = new ArrayStack<Long>();
-	String s; 
-	s = scan.nextLine();
-	iterate(s); 
-	printStack(stack);
+	public static void run(Scanner scan) throws Exception{
+		while(true){
+			stack = new ArrayStack<Long>();
+			String s; 
+			s = scan.nextLine();
+			iterate(s); 
+			System.out.print("[");
+			printStack(stack);
+			System.out.print("]");
+			
+	}
+	
+
 
 }
 
@@ -54,7 +59,7 @@ public static void main(String[] args) throws Exception {
 	
 		// Print the stack element starting
 		// from the bottom
-		System.out.print(x + " ");
+		System.out.print( + x + ", ");
 	
 		// Push the same element onto the stack
 		// to preserve the order
@@ -399,7 +404,9 @@ public static void main(String[] args) throws Exception {
 				case "o": 
 					oOperator(); 
 					break; 
-				
+				case ")":
+					break;
+
 				case "(": 
 					boolean con = true; 
 					String s = ""; 
