@@ -348,7 +348,7 @@ public static void main(String[] args) throws Exception {
 					break;
 					
 				case "-":
-					if(("!".equals(stringArray[i+1]))){ // 
+					if(( i+1 < stringArray.length) && ("!".equals(stringArray[i+1]))){ // 
 
 						
 						for(int n = 0; n < stack.size; n++){
@@ -359,7 +359,7 @@ public static void main(String[] args) throws Exception {
 					break;
 					
 				case "*":
-						if(("!".equals(stringArray[i+1]))){ // 
+						if(( i+1 < stringArray.length) && ("!".equals(stringArray[i+1]))){ // 
 							for(int n = 0; n < stack.size; n++){
 								times();
 							}
@@ -368,7 +368,7 @@ public static void main(String[] args) throws Exception {
 						break;
 						
 				case "/":
-						if(("!".equals(stringArray[i+1]))){ // 
+						if(( i+1 < stringArray.length) && ("!".equals(stringArray[i+1]))){ // 
 							
 							for(int n = 0; n < stack.size; n++){
 								divide();
@@ -378,7 +378,7 @@ public static void main(String[] args) throws Exception {
 						break;
 						
 				case "%":
-						if(("!".equals(stringArray[i+1]))){ // 
+						if(( i+1 < stringArray.length) && ("!".equals(stringArray[i+1]))){ // 
 							
 							for(int n = 0; n < stack.size; n++){
 								mod();
