@@ -1,23 +1,44 @@
 package RCPAssignment;
 import java.util.*;
-
+/**
+ * Application class which runs the RPN calculator. 
+ * @author max, harry and tom. 
+ * 
+ */
 public class RPNApp{
 
+/**
+ * Data field for the current stack. 
+ */
 public static ArrayStack<Long> stack;
-public static void main(String[] args) throws Exception {
-
-	String input = "1 1 10 ( d 3 r + o )";
-	stack = new ArrayStack<Long>();
-	System.out.println("Input : " +input);
-	iterate(input);
-	PrintStack(stack);
-}
 
 /**
- * Takes a String input --> returns a calculated result
- * * pushes each number into a Stack
- * * calls a method on each symbol
+ *  runs run() which prompts the user for an input. 
+ * @param args 
+ * @throws Exception if 
  */
+public static void main(String[] args) throws Exception {
+
+	run(); 
+}
+
+public static void run() throws Exception{
+
+	Scanner scan = new Scanner(System.in); 
+	stack = new ArrayStack<Long>();
+
+	String s; 
+	s = scan.nextLine();
+	System.out.println("Input : " + s);
+	iterate(s); 
+	PrintStack(stack);
+
+}
+
+
+
+
+
 public static void PrintStack(Stack<Long> s){ 
 
     // If stack is empty then return
@@ -198,7 +219,7 @@ public static void cOperator(){
 		long amount = stack.peek(); 
 		stack.pop(); 
 		// pushes second element by quantity amount of times. 
-		for(int i = 0;i<quantity;i++){
+		for(int i = 0 ; i < quantity ; i++ ){
 			stack.push(amount); 
 
 		}
@@ -261,7 +282,9 @@ public static void dOperator(){
 	} 
 	
 }
-
+/**
+ * 
+ */
 public static void oOperator(){ 
 
 	
@@ -275,7 +298,11 @@ public static void oOperator(){
 	
 }
 
-
+/**
+ * parathese takes a s between () then mulitples it by the top of the stack the is put iterate method. 
+ * @param s
+ * @throws Exception
+ */
 public static void parenthese(String s)throws Exception{
 
 	String addedString = "";
@@ -288,7 +315,6 @@ public static void parenthese(String s)throws Exception{
 
 	iterate(addedString); 
 }
-
 
 
 /**
@@ -305,7 +331,12 @@ public static boolean isNumber(String str) {
 	}  
   }
 
-
+/**
+ * Takes a String input --> returns a calculated result
+ * * pushes each number into a Stack
+ * * calls a method on each symbol
+ * 
+ */
   public static void iterate(String input) throws Exception{
 	String[] stringArray = input.split(" ");
 	for(int i = 0;i< stringArray.length;i++){
