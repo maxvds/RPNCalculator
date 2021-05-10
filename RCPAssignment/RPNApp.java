@@ -19,9 +19,9 @@ public static ArrayStack<Long> stack;
  * @throws Exception if 
  */
 public static void main(String[] args) throws Exception {
-
-	run(); 
-	System.out.println(stack);
+	while(true){
+		run();
+	}
 }
 
 	/**
@@ -29,19 +29,16 @@ public static void main(String[] args) throws Exception {
 	 * @throws Exception
 	 */
 	public static void run() throws Exception{
-
 	Scanner scan = new Scanner(System.in); 
 	stack = new ArrayStack<Long>();
-
 	String s; 
 	s = scan.nextLine();
-	System.out.println("Input : " + s);
 	iterate(s); 
-	PrintStack(stack);
+	printStack(stack);
 
 }
 
-	public static void PrintStack(Stack<Long> s){ 
+	public static void printStack(Stack<Long> s){ 
 
 		// If stack is empty then return
 		if (s.isEmpty())
@@ -53,7 +50,7 @@ public static void main(String[] args) throws Exception {
 		s.pop();
 	
 		// Recursively call the function PrintStack
-		PrintStack(s);
+		printStack(s);
 	
 		// Print the stack element starting
 		// from the bottom
@@ -410,18 +407,20 @@ public static void main(String[] args) throws Exception {
 					do{
 						switch (stringArray[i+2]){
 							case ")": 
-							con = false; 
-							break; 
+								con = false; 
+								break; 
 
 							case "(": 
-							throw new Exception("Error: unmatched parentheses"); 
+								System.out.println("Error: Unmatched parentheses");
 		
 						}
 						s += (stringArray[i+1] + " "); 
 						i++; 
 					}while(con); 
 					parenthese(s);
-					break; 
+					break;	
+				default:
+					System.out.println("Error: Bad token:" + stringArray[i] +"");
 				}
 			}
 		}
