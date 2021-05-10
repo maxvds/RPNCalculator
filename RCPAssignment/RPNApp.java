@@ -18,7 +18,11 @@ public static ArrayStack<Long> stack;
  * @throws Exception if 
  */
 public static void main(String[] args) throws Exception {
-	run(); 
+	String input = "1 2 3 4 - !";
+	stack = new ArrayStack<Long>();
+	iterate(input);
+	PrintStack(stack);
+	
 }
 
 /**
@@ -92,9 +96,7 @@ public static void times(){
 
 
 public static void add(){
-
-
-	try{
+		try{
 	// local var result.
 	long result; 
 	// take the top of the stack and store is then remove it 
@@ -339,36 +341,70 @@ public static boolean isNumber(String str) {
  */
   public static void iterate(String input) throws Exception{
 	String[] stringArray = input.split(" ");
-	for(int i = 0;i< stringArray.length;i++){
+	for(int i = 0; i< stringArray.length; i++){
 		if(isNumber(stringArray[i])){ // if c is a number
 			stack.push(Long.parseLong(stringArray[i]));
 		}
+		
 		else{ // if c is + - * / % 
 			switch (stringArray[i]) {
+				case "!" :
+				break;
+				
 				case "+":
+					if(("!".equals(stringArray[i+1]))){ // 
+						
+						for(int n = 0; n < stack.size; n++){
+							add();
+						}
+					}
 					add();
 					break;
-
+					
 				case "-":
+					if(("!".equals(stringArray[i+1]))){ // 
+
+						
+						for(int n = 0; n < stack.size; n++){
+							minus();
+						}
+					}
 					minus();
 					break;
-
+					
 				case "*":
-					times();
-					break;
-
+						if(("!".equals(stringArray[i+1]))){ // 
+							for(int n = 0; n < stack.size; n++){
+								times();
+							}
+						}
+						times();
+						break;
+						
 				case "/":
-					divide();
-					break;
-
+						if(("!".equals(stringArray[i+1]))){ // 
+							
+							for(int n = 0; n < stack.size; n++){
+								divide();
+							}
+						}
+						divide();
+						break;
+						
 				case "%":
-					mod();
-					break;
-
+						if(("!".equals(stringArray[i+1]))){ // 
+							
+							for(int n = 0; n < stack.size; n++){
+								mod();
+							}
+						}
+						mod();
+						break;
+						
 				case "c":
-					cOperator();
-					break; 
-
+						cOperator();
+						break; 
+				
 				case "r": 
 					rOperator(); 
 					break; 
