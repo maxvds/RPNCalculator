@@ -19,14 +19,8 @@ public class RPNApp{
  	 * @throws Exception if 
 	 */
 	public static void main(String[] args) throws Exception {
-<<<<<<< HEAD
 		run(); 
 	}
-=======
-	run(); 
-	System.out.println(stack);
-}
->>>>>>> bd87564947241109b7267e246bcb2364fccc2139
 
 	/**
 	 * propts the user for a string then call iterate method on the string. 
@@ -34,7 +28,6 @@ public class RPNApp{
 	 */
 	public static void run() throws Exception{
 
-<<<<<<< HEAD
 		Scanner scan = new Scanner(System.in); 
 		String s; 
 
@@ -44,18 +37,6 @@ public class RPNApp{
 			iterate(s);
 		
 
-=======
-	Scanner scan = new Scanner(System.in); 
-	String s; 
-	while(true){
-		stack = new ArrayStack<Long>();
-		String s; 
-
-		while(true){
-			s = scan.nextLine();
-			iterate(s);
-		}
->>>>>>> bd87564947241109b7267e246bcb2364fccc2139
 	}
 	
 	
@@ -352,7 +333,11 @@ public class RPNApp{
 			stack.push(Long.parseLong(stringArray[i]));
 		}
 		
-		else{ // if c is + - * / % 
+
+
+		else{
+			
+			try{// if c is + - * / % 
 			switch (stringArray[i]) {
 				case "!" :
 				break;
@@ -445,9 +430,13 @@ public class RPNApp{
 					
 					default:
 						throw new Exception("Error: bad token '"+ stringArray[i] +"'");}
+
+				}catch(Exception e){
+					System.out.println("Error: bad token '"+ stringArray[i] +"'");
 				}
-			}
+			} 
 		}
+	}
 				
 	/**
 	 * Method for checking if tokens are numbers.
