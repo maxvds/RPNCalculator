@@ -8,17 +8,18 @@ import java.util.*;
  */
 public class RPNApp{
 
-	/**
- 	*Data field for the current stack. 
-	*/
-	public static ArrayStack<Long> stack;
+/**
+ * Data field for the current stack. 
+ */
+public static ArrayStack<Long> stack;
 
-	/**
- 	 * runs run() which prompts the user for an input. 
- 	 * @param args 
- 	 * @throws Exception if 
-	 */
-	public static void main(String[] args) throws Exception {
+/**
+ *  runs run() which prompts the user for an input. 
+ * @param args 
+ * @throws Exception if 
+ */
+public static void main(String[] args) throws Exception {
+
 	run(); 
 	System.out.println(stack);
 }
@@ -30,18 +31,14 @@ public class RPNApp{
 	public static void run() throws Exception{
 
 	Scanner scan = new Scanner(System.in); 
-	String s; 
-	while(true){
-		stack = new ArrayStack<Long>();
-		String s; 
+	stack = new ArrayStack<Long>();
 
-		while(true){
-			s = scan.nextLine();
-			iterate(s);
-		}
-	}
-	
-	
+	String s; 
+	s = scan.nextLine();
+	System.out.println("Input : " + s);
+	iterate(s); 
+	PrintStack(stack);
+
 }
 
 	public static void PrintStack(Stack<Long> s){ 
@@ -341,7 +338,7 @@ public class RPNApp{
 				break;
 				
 				case "+":
-					if(("!".equals(stringArray[i+1]))){ // 
+					if(( i+1 < stringArray.length) && ("!".equals(stringArray[i+1]))){ // 
 						
 						for(int n = 0; n < stack.size; n++){
 							add();
@@ -425,11 +422,10 @@ public class RPNApp{
 					}while(con); 
 					parenthese(s);
 					break; 
-					default:
-						throw new Exception("Error: bad token '"+ stringArray[i] +"'");}
 				}
 			}
 		}
+	}
 				
 	/**
 	 * Method for checking if tokens are numbers.
