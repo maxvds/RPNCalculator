@@ -18,7 +18,6 @@ public static ArrayStack<Long> stack;
  * @throws Exception if 
  */
 public static void main(String[] args) throws Exception {
-
 	run(); 
 }
 
@@ -26,13 +25,12 @@ public static void run() throws Exception{
 
 	Scanner scan = new Scanner(System.in); 
 	stack = new ArrayStack<Long>();
-
 	String s; 
 	s = scan.nextLine();
 	System.out.println("Input : " + s);
 	iterate(s); 
 	PrintStack(stack);
-
+	scan.close();
 }
 
 
@@ -402,8 +400,12 @@ public static boolean isNumber(String str) {
 
 					parenthese(s);
 					break; 
-				}
+			
+				default:
+					throw new Exception("Error: bad token '"+ stringArray[i] +"'");
+
 			}
 		}
 	}
+}
 }
