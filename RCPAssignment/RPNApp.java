@@ -19,8 +19,14 @@ public class RPNApp{
  	 * @throws Exception if 
 	 */
 	public static void main(String[] args) throws Exception {
+<<<<<<< HEAD
 		run(); 
 	}
+=======
+	run(); 
+	System.out.println(stack);
+}
+>>>>>>> bd87564947241109b7267e246bcb2364fccc2139
 
 	/**
 	 * propts the user for a string then call iterate method on the string. 
@@ -28,6 +34,7 @@ public class RPNApp{
 	 */
 	public static void run() throws Exception{
 
+<<<<<<< HEAD
 		Scanner scan = new Scanner(System.in); 
 		String s; 
 
@@ -37,6 +44,18 @@ public class RPNApp{
 			iterate(s);
 		
 
+=======
+	Scanner scan = new Scanner(System.in); 
+	String s; 
+	while(true){
+		stack = new ArrayStack<Long>();
+		String s; 
+
+		while(true){
+			s = scan.nextLine();
+			iterate(s);
+		}
+>>>>>>> bd87564947241109b7267e246bcb2364fccc2139
 	}
 	
 	
@@ -320,20 +339,6 @@ public class RPNApp{
 	}
 
 
-	/**
-	 * Method for checking if tokens are numbers.
-	 * @param str token from input
-	 * @return boolean if its a number or not
-	 */
-	public static boolean isNumber(String str) { 
-		try {  
-		Double.parseDouble(str);  
-		return true;
-		} catch(NumberFormatException e){  
-		return false;  
-		}  
-	}
-
 /**
  * Takes a String input --> returns a calculated result
  * * pushes each number into a Stack
@@ -342,37 +347,70 @@ public class RPNApp{
  */
   public static void iterate(String input) throws Exception{
 	String[] stringArray = input.split(" ");
-	for(int i = 0;i< stringArray.length;i++){
+	for(int i = 0; i< stringArray.length; i++){
 		if(isNumber(stringArray[i])){ // if c is a number
 			stack.push(Long.parseLong(stringArray[i]));
 		}
+		
 		else{ // if c is + - * / % 
-			try{
 			switch (stringArray[i]) {
+				case "!" :
+				break;
+				
 				case "+":
+					if(("!".equals(stringArray[i+1]))){ // 
+						
+						for(int n = 0; n < stack.size; n++){
+							add();
+						}
+					}
 					add();
 					break;
-
+					
 				case "-":
+					if(("!".equals(stringArray[i+1]))){ // 
+
+						
+						for(int n = 0; n < stack.size; n++){
+							minus();
+						}
+					}
 					minus();
 					break;
-
+					
 				case "*":
-					times();
-					break;
-
+						if(("!".equals(stringArray[i+1]))){ // 
+							for(int n = 0; n < stack.size; n++){
+								times();
+							}
+						}
+						times();
+						break;
+						
 				case "/":
-					divide();
-					break;
-
+						if(("!".equals(stringArray[i+1]))){ // 
+							
+							for(int n = 0; n < stack.size; n++){
+								divide();
+							}
+						}
+						divide();
+						break;
+						
 				case "%":
-					mod();
-					break;
-
+						if(("!".equals(stringArray[i+1]))){ // 
+							
+							for(int n = 0; n < stack.size; n++){
+								mod();
+							}
+						}
+						mod();
+						break;
+						
 				case "c":
-					cOperator();
-					break; 
-
+						cOperator();
+						break; 
+				
 				case "r": 
 					rOperator(); 
 					break; 
@@ -406,14 +444,22 @@ public class RPNApp{
 					break; 
 					
 					default:
-						throw new Exception("Error: bad token '"+ stringArray[i] +"'");
-				}
-				}catch(Exception e){
-					System.out.println("Error: bad token '"+ stringArray[i] +"'");
-				}
-
+						throw new Exception("Error: bad token '"+ stringArray[i] +"'");}
 				}
 			}
 		}
+				
+	/**
+	 * Method for checking if tokens are numbers.
+	 * @param str token from input
+	 * @return boolean if its a number or not
+	 */
+	public static boolean isNumber(String str) { 
+		try {  
+		Double.parseDouble(str);  
+		return true;
+		} catch(NumberFormatException e){  
+		return false;  
+		}  
 	}
-
+}
