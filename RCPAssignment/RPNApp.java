@@ -29,7 +29,9 @@ public class RPNApp{
 	 */
 	public static void run() throws Exception{
 
-		Scanner scan = new Scanner(System.in); 
+	Scanner scan = new Scanner(System.in); 
+	String s; 
+	while(true){
 		stack = new ArrayStack<Long>();
 		String s; 
 
@@ -38,7 +40,9 @@ public class RPNApp{
 			iterate(s);
 		}
 	}
-
+	
+	
+}
 
 	public static void PrintStack(Stack<Long> s){ 
 
@@ -126,14 +130,14 @@ public class RPNApp{
 
 		try{
 
-		// take the top of the stack and store is then remove it
-		
-		long firstInt = stack.peek(); 
-		stack.pop(); 
+	// take the top of the stack and store is then remove it
+	long firstInt = stack.peek();
+	stack.pop(); 
+	 
 
-		// take the top of the stack which was the second and the store it then remove it. 
-		long secondInt = stack.peek(); 
-		stack.pop(); 
+	// take the top of the stack which was the second and the store it then remove it. 
+	long secondInt = stack.peek();
+	stack.pop(); 
 
 		// do the apprioaite operation 
 		result = secondInt - firstInt;
@@ -419,10 +423,8 @@ public class RPNApp{
 						s += (stringArray[i+1] + " "); 
 						i++; 
 					}while(con); 
-
 					parenthese(s);
-						break; 
-				
+					break; 
 					default:
 						throw new Exception("Error: bad token '"+ stringArray[i] +"'");}
 				}
