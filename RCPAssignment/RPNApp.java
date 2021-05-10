@@ -24,13 +24,15 @@ public static void main(String[] args) throws Exception {
 public static void run() throws Exception{
 
 	Scanner scan = new Scanner(System.in); 
-	stack = new ArrayStack<Long>();
 	String s; 
-	s = scan.nextLine();
-	System.out.println("Input : " + s);
-	iterate(s); 
-	PrintStack(stack);
-	scan.close();
+	while(true){
+		stack = new ArrayStack<Long>();
+		s = scan.nextLine();
+		iterate(s); 
+		PrintStack(stack);
+	}
+	
+	
 }
 
 
@@ -98,11 +100,13 @@ public static void add(){
 	// take the top of the stack and store is then remove it 
 
 	// take the top of the stack and store is then remove it
-	long firstInt = stack.pop();
+	long firstInt = stack.peek();
+	stack.pop(); 
 	 
 
 	// take the top of the stack which was the second and the store it then remove it. 
-	long secondInt = stack.pop();
+	long secondInt = stack.peek();
+	stack.pop(); 
 
 	// do the apprioaite operation 
 	result = firstInt + secondInt;
@@ -342,6 +346,7 @@ public static boolean isNumber(String str) {
 			stack.push(Long.parseLong(stringArray[i]));
 		}
 		else{ // if c is + - * / % 
+			try{
 			switch (stringArray[i]) {
 				case "+":
 					add();
@@ -396,15 +401,17 @@ public static boolean isNumber(String str) {
 						s += (stringArray[i+1] + " "); 
 						i++; 
 					}while(con); 
-
 					parenthese(s);
 					break; 
-			
-				default:
-					throw new Exception("Error: bad token '"+ stringArray[i] +"'");
+					default:
+						throw new Exception("Error: bad token '"+ stringArray[i] +"'");
+				}
+				}catch(Exception e){
+					System.out.println("Error: bad token '"+ stringArray[i] +"'");
+				}
 
 			}
 		}
 	}
 }
-}
+
