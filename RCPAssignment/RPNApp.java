@@ -18,7 +18,6 @@ public static ArrayStack<Long> stack;
  * @throws Exception if 
  */
 public static void main(String[] args) throws Exception {
-
 	run(); 
 }
 
@@ -402,8 +401,12 @@ public static boolean isNumber(String str) {
 
 					parenthese(s);
 					break; 
-				}
+			
+				default:
+					throw new Exception("Error: bad token '"+ stringArray[i] +"'");
+
 			}
 		}
 	}
+}
 }
