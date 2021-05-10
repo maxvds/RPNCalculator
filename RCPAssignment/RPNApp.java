@@ -29,17 +29,18 @@ public class RPNApp{
 	public static void run() throws Exception{
 
 		Scanner scan = new Scanner(System.in); 
-		stack = new ArrayStack<Long>();
 		String s; 
 
 		while(true){
 			stack = new ArrayStack<Long>();
 			s = scan.nextLine();
 			iterate(s);
-		}
+		
 
 	}
-
+	
+	
+}
 
 	public static void PrintStack(Stack<Long> s){ 
 
@@ -127,14 +128,14 @@ public class RPNApp{
 
 		try{
 
-		// take the top of the stack and store is then remove it
-		
-		long firstInt = stack.peek(); 
-		stack.pop(); 
+	// take the top of the stack and store is then remove it
+	long firstInt = stack.peek();
+	stack.pop(); 
+	 
 
-		// take the top of the stack which was the second and the store it then remove it. 
-		long secondInt = stack.peek(); 
-		stack.pop(); 
+	// take the top of the stack which was the second and the store it then remove it. 
+	long secondInt = stack.peek();
+	stack.pop(); 
 
 		// do the apprioaite operation 
 		result = secondInt - firstInt;
@@ -333,82 +334,86 @@ public class RPNApp{
 		}  
 	}
 
-	/**
-	 * Takes a String input --> returns a calculated result
-	 * * pushes each number into a Stack
-	 * * calls a method on each symbol
-	 * 
-	 */
-	public static void iterate(String input) throws Exception{
-		String[] stringArray = input.split(" ");
-		for(int i = 0;i< stringArray.length;i++){
-			if(isNumber(stringArray[i])){ // if c is a number
-				stack.push(Long.parseLong(stringArray[i]));
-			}
-			else{ // if c is + - * / % 
-				switch (stringArray[i]) {
-					case "+":
-						add();
-						break;
+/**
+ * Takes a String input --> returns a calculated result
+ * * pushes each number into a Stack
+ * * calls a method on each symbol
+ * 
+ */
+  public static void iterate(String input) throws Exception{
+	String[] stringArray = input.split(" ");
+	for(int i = 0;i< stringArray.length;i++){
+		if(isNumber(stringArray[i])){ // if c is a number
+			stack.push(Long.parseLong(stringArray[i]));
+		}
+		else{ // if c is + - * / % 
+			try{
+			switch (stringArray[i]) {
+				case "+":
+					add();
+					break;
 
-					case "-":
-						minus();
-						break;
+				case "-":
+					minus();
+					break;
 
-					case "*":
-						times();
-						break;
+				case "*":
+					times();
+					break;
 
-					case "/":
-						divide();
-						break;
+				case "/":
+					divide();
+					break;
 
-					case "%":
-						mod();
-						break;
+				case "%":
+					mod();
+					break;
 
-					case "c":
-						cOperator();
-						break; 
+				case "c":
+					cOperator();
+					break; 
 
-					case "r": 
-						rOperator(); 
-						break; 
+				case "r": 
+					rOperator(); 
+					break; 
 
-					case "d": 
-						dOperator(); 
-						break; 
-					
-					case "o": 
-						oOperator(); 
-						break; 
-					
-					case "(": 
-						boolean con = true; 
-						String s = ""; 
-					
-						do{
-							switch (stringArray[i+2]){
-								case ")": 
-								con = false; 
-								break; 
-
-								case "(": 
-								throw new Exception("Error: unmatched parentheses"); 
-			
-							}
-							s += (stringArray[i+1] + " "); 
-							i++; 
-						}while(con); 
-
-						parenthese(s);
-						break; 
+				case "d": 
+					dOperator(); 
+					break; 
 				
+				case "o": 
+					oOperator(); 
+					break; 
+				
+				case "(": 
+					boolean con = true; 
+					String s = ""; 
+				
+					do{
+						switch (stringArray[i+2]){
+							case ")": 
+							con = false; 
+							break; 
+
+							case "(": 
+							throw new Exception("Error: unmatched parentheses"); 
+		
+						}
+						s += (stringArray[i+1] + " "); 
+						i++; 
+					}while(con); 
+					parenthese(s);
+					break; 
+					
 					default:
 						throw new Exception("Error: bad token '"+ stringArray[i] +"'");
+				}
+				}catch(Exception e){
+					System.out.println("Error: bad token '"+ stringArray[i] +"'");
+				}
 
 				}
 			}
 		}
 	}
-}
+
