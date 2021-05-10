@@ -315,7 +315,6 @@ public static void parenthese(String s)throws Exception{
 }
 
 
-
 /**
  * Method for checking if tokens are numbers.
  * @param str token from input
