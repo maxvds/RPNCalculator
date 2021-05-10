@@ -36,6 +36,7 @@ public static ArrayStack<Long> stack;
 			System.out.print("[");
 			printStack(stack);
 			System.out.print("]");
+			System.out.println();
 			
 	}
 	
@@ -46,10 +47,12 @@ public static ArrayStack<Long> stack;
 	public static void printStack(Stack<Long> s){ 
 
 		// If stack is empty then return
-		if (s.isEmpty())
+		if (s.isEmpty()){
 			return; 
-		
+		}
+
 		long x = s.peek();
+
 	
 		// Pop the top element of the stack
 		s.pop();
@@ -59,7 +62,7 @@ public static ArrayStack<Long> stack;
 	
 		// Print the stack element starting
 		// from the bottom
-		System.out.print( + x + ", ");
+		System.out.print( x + ", ");
 	
 		// Push the same element onto the stack
 		// to preserve the order
