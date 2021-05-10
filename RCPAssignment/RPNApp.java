@@ -13,7 +13,7 @@ public class RPNApp{
 public static ArrayStack<Long> stack;
 
 /**
- *  runs run() which prompts the user for an input. 
+ * runs run() which prompts the user for an input. 
  * @param args 
  * @throws Exception if 
  */
@@ -22,21 +22,22 @@ public static void main(String[] args) throws Exception {
 	run(); 
 }
 
+/**
+ * propts the user for a string then call iterate method on the string. 
+ * @throws Exception
+ */
 public static void run() throws Exception{
 
 	Scanner scan = new Scanner(System.in); 
 	stack = new ArrayStack<Long>();
-
 	String s; 
-	s = scan.nextLine();
-	System.out.println("Input : " + s);
-	iterate(s); 
-	PrintStack(stack);
+
+	while(true){
+		s = scan.nextLine();
+		iterate(s);
+	}
 
 }
-
-
-
 
 
 public static void PrintStack(Stack<Long> s){ 
