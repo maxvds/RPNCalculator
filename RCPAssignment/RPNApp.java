@@ -33,9 +33,7 @@ public static ArrayStack<Long> stack;
 			String s; 
 			s = scan.nextLine();
 			iterate(s); 
-			System.out.print("[");
 			printStack(stack);
-			System.out.print("]");
 			System.out.println();
 			
 	}
@@ -45,11 +43,10 @@ public static ArrayStack<Long> stack;
 }
 
 	public static void printStack(Stack<Long> s){ 
-
 		// If stack is empty then return
-		if (s.isEmpty()){
+		if (s.isEmpty())
 			return; 
-		}
+		
 
 		long x = s.peek();
 
@@ -67,6 +64,7 @@ public static ArrayStack<Long> stack;
 		// Push the same element onto the stack
 		// to preserve the order
 		s.push(x);
+		
 	}
 
 	public static void times(){
@@ -99,19 +97,21 @@ public static ArrayStack<Long> stack;
 
 
 	public static void add(){
-
+		long result; 
 
 		try{
 		// local var result.
-		long result; 
+		
 		// take the top of the stack and store is then remove it 
 
 		// take the top of the stack and store is then remove it
-		long firstInt = stack.pop();
+		long firstInt = stack.peek();
+		stack.pop();
 		
 
 		// take the top of the stack which was the second and the store it then remove it. 
-		long secondInt = stack.pop();
+		long secondInt = stack.peek();
+		stack.pop();
 
 		// do the apprioaite operation 
 		result = firstInt + secondInt;
@@ -120,6 +120,8 @@ public static ArrayStack<Long> stack;
 		stack.push(result); 
 		} catch(ArrayIndexOutOfBoundsException e){
 			System.out.println("Error: too few operands"); 
+		} catch(Exception p){
+			System.out.println("Error: too few operands");
 		}
 		
 	}

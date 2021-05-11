@@ -45,6 +45,7 @@ public class ArrayStack<T> implements Stack<T> {
         }
         size--;
         return stack[size];
+        
     }
     //Empty checking method
     public boolean isEmpty() {
