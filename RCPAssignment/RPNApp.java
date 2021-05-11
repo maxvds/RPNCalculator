@@ -21,7 +21,6 @@ public static ArrayStack<Long> stack;
 public static void main(String[] args) throws Exception {
 
 	run(); 
-	System.out.println(stack);
 }
 
 	/**
@@ -327,63 +326,83 @@ public static void main(String[] args) throws Exception {
  */
   public static void iterate(String input) throws Exception{
 	String[] stringArray = input.split(" ");
-	for(int i = 0; i< stringArray.length; i++){
+	for( int i = 0; i < stringArray.length; i++ ){
 		if(isNumber(stringArray[i])){ // if c is a number
 			stack.push(Long.parseLong(stringArray[i]));
 		}
 		
 		else{ // if c is + - * / % 
 			switch (stringArray[i]) {
-				case "!" :
-				break;
-				
-				case "+":
-					if(( i+1 < stringArray.length) && ("!".equals(stringArray[i+1]))){ // 
-						
-						for(int n = 0; n < stack.size; n++){
+				case "+!" :
+				{
+						int stackSize = stack.size-1;
+
+						for(int n = 0; n < stackSize; n++){
 							add();
 						}
 					}
+					break;
+
+				case "-!" :
+				{
+					int stackSize = stack.size-1;
+
+					for(int n = 0; n < stackSize; n++){
+						minus();
+					}
+				}
+						
+					break;
+
+				case "*!" :
+				{
+					int stackSize = stack.size-1;
+
+					for(int n = 0; n < stackSize; n++){
+						times();
+					}
+				}
+						
+					break;
+
+				case "/!" :
+				{
+					int stackSize = stack.size-1;
+
+					for(int n = 0; n < stackSize; n++){
+						divide();
+					}
+				}
+						
+					break;
+
+				case "%!" :
+				{
+					int stackSize = stack.size-1;
+
+					for(int n = 0; n < stackSize; n++){
+						mod();
+					}
+				}
+					break;
+				
+				case "+":
 					add();
 					break;
 					
 				case "-":
-					if(( i+1 < stringArray.length) && ("!".equals(stringArray[i+1]))){ // 
-
-						
-						for(int n = 0; n < stack.size; n++){
-							minus();
-						}
-					}
 					minus();
 					break;
 					
 				case "*":
-						if(( i+1 < stringArray.length) && ("!".equals(stringArray[i+1]))){ // 
-							for(int n = 0; n < stack.size; n++){
-								times();
-							}
-						}
 						times();
 						break;
 						
 				case "/":
-						if(( i+1 < stringArray.length) && ("!".equals(stringArray[i+1]))){ // 
-							
-							for(int n = 0; n < stack.size; n++){
-								divide();
-							}
-						}
 						divide();
 						break;
 						
 				case "%":
-						if(( i+1 < stringArray.length) && ("!".equals(stringArray[i+1]))){ // 
-							
-							for(int n = 0; n < stack.size; n++){
-								mod();
-							}
-						}
 						mod();
 						break;
 						
