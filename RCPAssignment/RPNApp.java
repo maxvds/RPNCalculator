@@ -33,9 +33,12 @@ public static ArrayStack<Long> stack;
 			String s; 
 			s = scan.nextLine();
 			iterate(s);
-			System.out.print("["); 
-			printStack(stack);
-			System.out.print("]"); 
+			if(stack.isEmpty() != true){
+				System.out.print("["); 
+				printStack(stack);
+				System.out.print("]"); 
+			}
+
 	}
 	
 
@@ -458,7 +461,7 @@ public static ArrayStack<Long> stack;
 					break;	
 				default:
 					System.out.println("Error: bad token " + "'" + stringArray[i] +"'");
-					
+
 				}
 			}
 		}
