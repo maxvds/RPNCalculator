@@ -38,10 +38,9 @@ public static ArrayStack<Long> stack;
 				printStack(stack);
 				System.out.print("]"); 
 			}
+		}
 
-	}
 	
-
 
 }
 
@@ -460,13 +459,13 @@ public static ArrayStack<Long> stack;
 					parenthese(s);
 					break;	
 				default:
-					System.out.println("Error: bad token " + "'" + stringArray[i] +"'");
-
+					System.out.println("Error: bad token " + "'" + stringArray[i] + "'");
+					stack = new ArrayStack<Long>();
 				}
 			}
 		}
 	}
-				
+
 	/**
 	 * Method for checking if tokens are numbers.
 	 * @param str token from input
