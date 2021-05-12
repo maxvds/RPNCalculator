@@ -37,6 +37,7 @@ public static ArrayStack<Long> stack;
 				System.out.print("["); 
 				printStack(stack);
 				System.out.print("]"); 
+				System.out.println();
 			}
 		}
 
