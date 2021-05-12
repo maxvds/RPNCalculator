@@ -32,10 +32,10 @@ public static ArrayStack<Long> stack;
 			stack = new ArrayStack<Long>();
 			String s; 
 			s = scan.nextLine();
-			iterate(s); 
+			iterate(s);
+			System.out.print("["); 
 			printStack(stack);
-			System.out.println();
-			
+			System.out.print("]"); 
 	}
 	
 
@@ -53,13 +53,18 @@ public static ArrayStack<Long> stack;
 	
 		// Pop the top element of the stack
 		s.pop();
-	
+		
 		// Recursively call the function PrintStack
 		printStack(s);
 	
 		// Print the stack element starting
 		// from the bottom
-		System.out.print( x + ", ");
+		if(s.size() == 0){
+			System.out.print(x);
+		}else{
+			System.out.print(", " + x );
+		}
+		
 	
 		// Push the same element onto the stack
 		// to preserve the order
@@ -177,7 +182,7 @@ public static ArrayStack<Long> stack;
 				// push the result
 				stack.push(result);
 			}catch (ArithmeticException e){
-				System.out.println("division by 0"); 
+				System.out.println("Error: division by 0"); 
 			}
 		// push the result 
 		
@@ -452,7 +457,8 @@ public static ArrayStack<Long> stack;
 					parenthese(s);
 					break;	
 				default:
-					System.out.println("Error: Bad token:" + stringArray[i] +"");
+					System.out.println("Error: bad token " + "'" + stringArray[i] +"'");
+					
 				}
 			}
 		}
