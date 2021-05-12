@@ -28,7 +28,7 @@ public static ArrayStack<Long> stack;
 	 * @throws Exception
 	 */
 	public static void run(Scanner scan) throws Exception{
-		while(true){
+		while(scan.hasNextLine()){
 			stack = new ArrayStack<Long>();
 			String s; 
 			s = scan.nextLine();
