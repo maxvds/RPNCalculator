@@ -18,29 +18,32 @@ public static ArrayStack<Long> stack;
  * @param args 
  * @throws Exception if 
  */
-public static void main(String[] args) throws Exception {
-
-	run(); 
-}
+	public static void main(String[] args) throws Exception {
+		Scanner scan = new Scanner(System.in);
+		run(scan);
+	}
 
 	/**
 	 * propts the user for a string then call iterate method on the string. 
 	 * @throws Exception
 	 */
-	public static void run() throws Exception{
+	public static void run(Scanner scan) throws Exception{
+		while(true){
+			stack = new ArrayStack<Long>();
+			String s; 
+			s = scan.nextLine();
+			iterate(s); 
+			System.out.print("[");
+			printStack(stack);
+			System.out.print("]");
+			
+	}
+	
 
-	Scanner scan = new Scanner(System.in); 
-	stack = new ArrayStack<Long>();
-
-	String s; 
-	s = scan.nextLine();
-	System.out.println("Input : " + s);
-	iterate(s); 
-	PrintStack(stack);
 
 }
 
-	public static void PrintStack(Stack<Long> s){ 
+	public static void printStack(Stack<Long> s){ 
 
 		// If stack is empty then return
 		if (s.isEmpty())
@@ -52,11 +55,11 @@ public static void main(String[] args) throws Exception {
 		s.pop();
 	
 		// Recursively call the function PrintStack
-		PrintStack(s);
+		printStack(s);
 	
 		// Print the stack element starting
 		// from the bottom
-		System.out.print(x + " ");
+		System.out.print( + x + ", ");
 	
 		// Push the same element onto the stack
 		// to preserve the order
@@ -421,7 +424,9 @@ public static void main(String[] args) throws Exception {
 				case "o": 
 					oOperator(); 
 					break; 
-				
+				case ")":
+					break;
+
 				case "(": 
 					boolean con = true; 
 					String s = ""; 
@@ -429,18 +434,20 @@ public static void main(String[] args) throws Exception {
 					do{
 						switch (stringArray[i+2]){
 							case ")": 
-							con = false; 
-							break; 
+								con = false; 
+								break; 
 
 							case "(": 
-							throw new Exception("Error: unmatched parentheses"); 
+								System.out.println("Error: Unmatched parentheses");
 		
 						}
 						s += (stringArray[i+1] + " "); 
 						i++; 
 					}while(con); 
 					parenthese(s);
-					break; 
+					break;	
+				default:
+					System.out.println("Error: Bad token:" + stringArray[i] +"");
 				}
 			}
 		}
