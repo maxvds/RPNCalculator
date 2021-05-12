@@ -1,6 +1,8 @@
 package RCPAssignment;
 import java.util.*;
 
+import jdk.javadoc.internal.doclets.formats.html.resources.standard_ja;
+
 /**
  * Application class which runs the RPN calculator. 
  * @author max, harry and tom. 
@@ -429,28 +431,43 @@ public static ArrayStack<Long> stack;
 				case "o": 
 					oOperator(); 
 					break; 
-				case ")":
-					break;
-
+				
 				case "(": 
 					boolean con = true; 
 					String s = ""; 
+					String added = ""; 
 				
-					do{
-						switch (stringArray[i+2]){
-							case ")": 
-								con = false; 
-								break; 
-
-							case "(": 
-								System.out.println("Error: Unmatched parentheses");
-		
+					while(true){
+						if(stringArray[i+1].equals(")")){
+							break; 
+						}else if(stringArray[i+1].equals("(")){
+							int count = Integer.parseInt(String.valueOf(s.charAt(s.length()-2)));
+							s = s.substring(0, s.length() - 2); 
+							String temp = ""; 
+							while(true){
+								System.out.println(stringArray[i]); 
+								if(stringArray[i+1].equals(")")){
+									break; 
+								}
+								temp += (stringArray[i+2] + " "); 
+								i++; 
+							}
+							temp = temp.substring(0, temp.length() - 2);
+							System.out.println(temp); 
+							for(int j = 0;j < count; j++){
+								s += temp; 
+							}
+							i++; 
 						}
-						s += (stringArray[i+1] + " "); 
+						s +=(stringArray[i+1] + " "); 
 						i++; 
-					}while(con); 
+					}
+					
+					System.out.println(s);
 					parenthese(s);
 					break;	
+					case ")":
+					break; 
 				default:
 					System.out.println("Error: Bad token:" + stringArray[i] +"");
 				}
@@ -472,3 +489,28 @@ public static ArrayStack<Long> stack;
 		}  
 	}
 }
+
+/**
+ * case "(": 
+								System.out.println(s); 
+								System.out.print(s.length());
+								 int count = Character.getNumericValue(s.charAt(s.length()-1)); 
+								 s = s.substring(0, s.length() - 1); 
+								 String temp = ""; 
+								boolean run = true; 
+								while(run){
+									switch(stringArray[i+2]){
+										case ")":
+										run = false; 
+										break; 
+									}
+									temp += (stringArray[i+1] + " "); 
+								 	i++;
+								}
+								for(int j = 0; j<count; j++){
+									added += temp; 
+								}
+								s += added; 
+								i++; 
+								break; 
+ */
