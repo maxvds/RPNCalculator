@@ -1,8 +1,6 @@
 package RCPAssignment;
 import java.util.*;
 
-import jdk.javadoc.internal.doclets.formats.html.resources.standard_ja;
-
 /**
  * Application class which runs the RPN calculator. 
  * @author max, harry and tom. 
@@ -429,11 +427,9 @@ public static ArrayStack<Long> stack;
 					oOperator(); 
 					break; 
 				
-				case "(": 
-					boolean con = true; 
+				case "(":  
 					String s = ""; 
-					String added = ""; 
-				
+					
 					while(true){
 						if(stringArray[i+1].equals(")")){
 							break; // add everything in the braccekts while ) 
@@ -492,28 +488,3 @@ public static ArrayStack<Long> stack;
 		}  
 	}
 }
-
-/**
- * case "(": 
-								System.out.println(s); 
-								System.out.print(s.length());
-								 int count = Character.getNumericValue(s.charAt(s.length()-1)); 
-								 s = s.substring(0, s.length() - 1); 
-								 String temp = ""; 
-								boolean run = true; 
-								while(run){
-									switch(stringArray[i+2]){
-										case ")":
-										run = false; 
-										break; 
-									}
-									temp += (stringArray[i+1] + " "); 
-								 	i++;
-								}
-								for(int j = 0; j<count; j++){
-									added += temp; 
-								}
-								s += added; 
-								i++; 
-								break; 
- */
