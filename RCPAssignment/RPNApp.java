@@ -13,19 +13,20 @@ public class RPNApp{
  */
 public static ArrayStack<Long> stack;
 
-/**
- *  runs run() which prompts the user for an input. 
- * @param args 
- * @throws Exception if 
- */
+	/**
+	 * runs run() which prompts the user for an input. 
+	 * @param args 
+	 * @throws Exception if  
+	 */
 	public static void main(String[] args) throws Exception {
 		Scanner scan = new Scanner(System.in);
 		run(scan);
 	}
 
 	/**
-	 * propts the user for a string then call iterate method on the string. 
+	 * Prompts the user for a string then call iterate method on the string. 
 	 * @throws Exception
+	 * @param scan Scanner object for reading system input
 	 */
 	public static void run(Scanner scan) throws Exception{
 		while(scan.hasNextLine()){
@@ -40,137 +41,115 @@ public static ArrayStack<Long> stack;
 				System.out.println();
 			}
 		}
-
-	
-
 }
-
+	/**
+	 * Prints each stack item in the correct order.
+	 * @param s the array stack created and filled in by the run and iterate methods
+	 */
 	public static void printStack(Stack<Long> s){ 
-		// If stack is empty then return
 		if (s.isEmpty())
 			return; 
-		
 
 		long x = s.peek();
-
-	
-		// Pop the top element of the stack
 		s.pop();
-		
-		// Recursively call the function PrintStack
+
 		printStack(s);
 	
-		// Print the stack element starting
-		// from the bottom
 		if(s.size() == 0){
 			System.out.print(x);
 		}else{
 			System.out.print(", " + x );
 		}
-		
-	
+
 		// Push the same element onto the stack
-		// to preserve the order
+		// to preserve the order and size counter
 		s.push(x);
 		
 	}
 
+	/**
+	 * Times method that takes the top two stack items, multiplies them and pushes the result.
+	 */
 	public static void times(){
 
-		// local var result.
 		long result; 
-		// take the top of the stack and store is then remove it 
 		
 		try{
-
-		// take the top of the stack and store is then remove it
 		long firstInt = stack.peek(); 
 		stack.pop(); 
 
-		// take the top of the stack which was the second and the store it then remove it. 
 		long secondInt = stack.peek(); 
 		stack.pop(); 
 
-		// do the apprioaite operation 
 		result = firstInt * secondInt;
 
-		// push the result 
 		stack.push(result); 
 		
 			}catch(ArrayIndexOutOfBoundsException e){
 				System.out.println("Error: too few operands"); 
 			}
-		
 	}
 
-
+	/**
+	 * Adding method that takes the top two stack items, adds them and pushes the result.
+	 */
 	public static void add(){
+
 		long result; 
 
 		try{
-		// local var result.
-		
-		// take the top of the stack and store is then remove it 
+			long firstInt = stack.peek();
+			stack.pop();
+			
+			long secondInt = stack.peek();
+			stack.pop();
 
-		// take the top of the stack and store is then remove it
-		long firstInt = stack.peek();
-		stack.pop();
-		
+			result = firstInt + secondInt;
+			
+			stack.push(result);
 
-		// take the top of the stack which was the second and the store it then remove it. 
-		long secondInt = stack.peek();
-		stack.pop();
-
-		// do the apprioaite operation 
-		result = firstInt + secondInt;
-		
-		// push the result 
-		stack.push(result); 
 		} catch(ArrayIndexOutOfBoundsException e){
 			System.out.println("Error: too few operands"); 
 		} catch(Exception p){
 			System.out.println("Error: too few operands");
-		}
-		
+		}	
 	}
 
+	/**
+	 * Subtraction method that takes the top two stack items, subtracts them and pushes the result.
+	 */
 	public static void minus(){
 
-		// local var result.
 		long result; 
-		// take the top of the stack and store is then remove it 
 
 		try{
+			// take the top of the stack and store is then remove it
+			long firstInt = stack.peek();
+			stack.pop(); 
+			
+			// take the top of the stack which was the second and the store it then remove it. 
+			long secondInt = stack.peek();
+			stack.pop(); 
 
-	// take the top of the stack and store is then remove it
-	long firstInt = stack.peek();
-	stack.pop(); 
-	 
-
-	// take the top of the stack which was the second and the store it then remove it. 
-	long secondInt = stack.peek();
-	stack.pop(); 
-
-		// do the apprioaite operation 
-		result = secondInt - firstInt;
-		
-		// push the result 
-		stack.push(result); 
+			// do the apprioaite operation 
+			result = secondInt - firstInt;
+			
+			// push the result 
+			stack.push(result); 
 		
 			}catch(ArrayIndexOutOfBoundsException e){
 				System.out.println("Error: too few operands"); 
 			}
-		
 	}
 
+	/**
+	 * Division method that takes the top two stack items, divides them and pushes the result.
+	 */
 	public static void divide(){
 
-		// local var result.
 		long result; 
-		// take the top of the stack and store is then remove it 
 
 		try{
-
 			// take the top of the stack and store is then remove it
 			long firstInt = stack.peek(); 
 			stack.pop(); 
@@ -192,9 +171,11 @@ public static ArrayStack<Long> stack;
 		}catch(ArrayIndexOutOfBoundsException e){
 			System.out.println("Error: too few operands"); 
 		}
-		
 	}
 
+	/**
+	 * Modular method that takes the top two stack items, divides them and pushes the result the result.
+	 */
 	public static void mod(){
 
 		// local var result.
