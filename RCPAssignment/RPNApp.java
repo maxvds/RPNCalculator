@@ -439,31 +439,36 @@ public static ArrayStack<Long> stack;
 				
 					while(true){
 						if(stringArray[i+1].equals(")")){
-							break; 
-						}else if(stringArray[i+1].equals("(")){
+							break; // add everything in the braccekts while ) 
+						}else if(stringArray[i+1].equals("(")){ // if incounter another ( 
+							// take the last int in the string s 
 							int count = Integer.parseInt(String.valueOf(s.charAt(s.length()-2)));
+							// the remove it 
 							s = s.substring(0, s.length() - 2); 
 							String temp = ""; 
+							// added everything in the second ) 
 							while(true){
-								System.out.println(stringArray[i]); 
 								if(stringArray[i+1].equals(")")){
 									break; 
 								}
+								// addding all 
 								temp += (stringArray[i+2] + " "); 
+								// making sure adding 
 								i++; 
 							}
+							// removing the last ) 
 							temp = temp.substring(0, temp.length() - 2);
 							System.out.println(temp); 
+							// increase the string by count amount of times 
 							for(int j = 0;j < count; j++){
 								s += temp; 
 							}
+							// incermeent to make sure miss the last bracket ) 
 							i++; 
 						}
 						s +=(stringArray[i+1] + " "); 
 						i++; 
 					}
-					
-					System.out.println(s);
 					parenthese(s);
 					break;	
 					case ")":
