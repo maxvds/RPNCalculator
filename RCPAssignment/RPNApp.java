@@ -27,9 +27,8 @@ public static ArrayStack<Long> stack;
 	/**
 	 * Run method.
 	 * creates a local stack object, prompts the user for a string, then calls the iterate() method onto the string.
-	 * @param scan - a scanner object that is used to take user input.
+	 * @param scan - a scanner object that is used to take input.
 	 * @throws Exception
-	 * @param scan Scanner object for reading system input
 	 */
 	public static void run(Scanner scan) throws Exception{
 		while(scan.hasNextLine()){
@@ -47,7 +46,7 @@ public static ArrayStack<Long> stack;
 }
 	/**
 	 * Prints each stack item in the correct order.
-	 * @param s the array stack created and filled in by the run and iterate methods
+	 * @param s the array stack created and filled in by the run and iterate methods.
 	 */
 	public static void printStack(Stack<Long> s){ 
 		if (s.isEmpty())
@@ -310,9 +309,8 @@ public static ArrayStack<Long> stack;
 
 	/**
 	 * Parenthese method.
-	 * Takes the top of the stack, and determines how many times the string within the brackets is going to execute.
-	 * parathese takes a s between () then mulitples it by the top of the stack the is put iterate method. ////////////////////////////////////////////////
-	 * 
+	 * Takes the top of the stack, and determines how many 
+	 * times the string within the brackets is going to execute on the stack.
 	 * @param s - a string representing the numbers and operations in between 2 brackets in a token.
 	 * @throws Exception
 	 */
