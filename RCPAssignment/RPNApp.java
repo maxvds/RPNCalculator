@@ -1,6 +1,8 @@
 package RCPAssignment;
 import java.util.*;
 
+import jdk.javadoc.internal.doclets.formats.html.resources.standard_ja;
+
 /**
  * Application class which runs the RPN calculator. 
  * @author max, harry and tom. 
@@ -426,28 +428,48 @@ public static ArrayStack<Long> stack;
 				case "o": 
 					oOperator(); 
 					break; 
-				case ")":
-					break;
-
+				
 				case "(": 
 					boolean con = true; 
 					String s = ""; 
+					String added = ""; 
 				
-					do{
-						switch (stringArray[i+2]){
-							case ")": 
-								con = false; 
-								break; 
-
-							case "(": 
-								System.out.println("Error: Unmatched parentheses");
-		
+					while(true){
+						if(stringArray[i+1].equals(")")){
+							break; // add everything in the braccekts while ) 
+						}else if(stringArray[i+1].equals("(")){ // if incounter another ( 
+							// take the last int in the string s 
+							int count = Integer.parseInt(String.valueOf(s.charAt(s.length()-2)));
+							// the remove it 
+							s = s.substring(0, s.length() - 2); 
+							String temp = ""; 
+							// added everything in the second ) 
+							while(true){
+								if(stringArray[i+1].equals(")")){
+									break; 
+								}
+								// addding all 
+								temp += (stringArray[i+2] + " "); 
+								// making sure adding 
+								i++; 
+							}
+							// removing the last ) 
+							temp = temp.substring(0, temp.length() - 2);
+							System.out.println(temp); 
+							// increase the string by count amount of times 
+							for(int j = 0;j < count; j++){
+								s += temp; 
+							}
+							// incermeent to make sure miss the last bracket ) 
+							i++; 
 						}
-						s += (stringArray[i+1] + " "); 
+						s +=(stringArray[i+1] + " "); 
 						i++; 
-					}while(con); 
+					}
 					parenthese(s);
 					break;	
+					case ")":
+					break; 
 				default:
 					System.out.println("Error: bad token " + "'" + stringArray[i] + "'");
 					stack = new ArrayStack<Long>();
@@ -470,3 +492,28 @@ public static ArrayStack<Long> stack;
 		}  
 	}
 }
+
+/**
+ * case "(": 
+								System.out.println(s); 
+								System.out.print(s.length());
+								 int count = Character.getNumericValue(s.charAt(s.length()-1)); 
+								 s = s.substring(0, s.length() - 1); 
+								 String temp = ""; 
+								boolean run = true; 
+								while(run){
+									switch(stringArray[i+2]){
+										case ")":
+										run = false; 
+										break; 
+									}
+									temp += (stringArray[i+1] + " "); 
+								 	i++;
+								}
+								for(int j = 0; j<count; j++){
+									added += temp; 
+								}
+								s += added; 
+								i++; 
+								break; 
+ */
