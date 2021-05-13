@@ -14,7 +14,8 @@ public class RPNApp{
 public static ArrayStack<Long> stack;
 
 /**
- *  runs run() which prompts the user for an input. 
+ *  Main Method.
+ * Creates a Scanner object and Executes the run method on it.
  * @param args 
  * @throws Exception if 
  */
@@ -24,7 +25,9 @@ public static ArrayStack<Long> stack;
 	}
 
 	/**
-	 * propts the user for a string then call iterate method on the string. 
+	 * Run method.
+	 * creates a local stack object, prompts the user for a string, then calls the iterate() method onto the string.
+	 * @param scan - a scanner object that is used to take user input.
 	 * @throws Exception
 	 */
 	public static void run(Scanner scan) throws Exception{
@@ -316,7 +319,10 @@ public static ArrayStack<Long> stack;
 	}
 
 	/**
-	 * parathese takes a s between () then mulitples it by the top of the stack the is put iterate method. 
+	 * Parenthese method.
+	 * Takes the top of the stack, and determines how many times the string within the brackets is going to execute.
+	 * parathese takes a s between () then mulitples it by the top of the stack the is put iterate method. ////////////////////////////////////////////////
+	 * 
 	 * @param s
 	 * @throws Exception
 	 */
@@ -336,8 +342,8 @@ public static ArrayStack<Long> stack;
 
 /**
  * Takes a String input --> returns a calculated result
- * * pushes each number into a Stack
- * * calls a method on each symbol
+ * pushes each number into a Stack
+ * calls a method on each symbol
  * 
  */
   public static void iterate(String input) throws Exception{
