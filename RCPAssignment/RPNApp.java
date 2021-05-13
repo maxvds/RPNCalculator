@@ -323,7 +323,7 @@ public static ArrayStack<Long> stack;
 	 * Takes the top of the stack, and determines how many times the string within the brackets is going to execute.
 	 * parathese takes a s between () then mulitples it by the top of the stack the is put iterate method. ////////////////////////////////////////////////
 	 * 
-	 * @param s
+	 * @param s - a string representing the numbers and operations in between 2 brackets in a token.
 	 * @throws Exception
 	 */
 	public static void parenthese(String s)throws Exception{
@@ -341,6 +341,8 @@ public static ArrayStack<Long> stack;
 
 
 /**
+ * Iterate method.
+ * Takes a white space separated token and returns 
  * Takes a String input --> returns a calculated result
  * pushes each number into a Stack
  * calls a method on each symbol
