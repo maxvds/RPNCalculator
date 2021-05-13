@@ -323,10 +323,8 @@ public static ArrayStack<Long> stack;
 
 /**
  * Iterate method.
- * Takes a white space separated token and returns 
- * Takes a String input --> returns a calculated result
- * pushes each number into a Stack
- * calls a method on each symbol
+ * Takes an input and returns a calculated result in Stack form.
+ * @param input - a white space separated token with numbers and operators.
  * 
  */
   public static void iterate(String input) throws Exception{
