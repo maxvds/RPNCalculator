@@ -209,7 +209,10 @@ public static ArrayStack<Long> stack;
 
 
 	}
-
+	/**
+	 * fetches the top of the stack and second item on the stack and 
+	 * added the second item to the top of the stack by the top amount. 
+	 */
 	public static void cOperator(){
 
 		try{ 
@@ -229,7 +232,9 @@ public static ArrayStack<Long> stack;
 		}
 			
 	}	
-
+	/**
+	 * Using the number on the top of the stack to move the second item down the stack that amout of times. 
+	 */
 	public static void rOperator(){ 
 
 		try{
@@ -269,6 +274,10 @@ public static ArrayStack<Long> stack;
 			System.out.println("Error: too few operands"); 
 		}
 	}
+	
+	/**
+	 * duplicates the top of the stack. 
+	 */
 	public static void dOperator(){
 
 		
@@ -284,7 +293,7 @@ public static ArrayStack<Long> stack;
 		
 	}
 	/**
-	 * 
+	 * print the top of the stack. 
 	 */
 	public static void oOperator(){ 
 
