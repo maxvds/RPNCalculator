@@ -15,7 +15,7 @@
             "type": "java",
             "name": "Launch RPNApp",
             "request": "launch",
-            "mainClass": "RCPAssignment.RPNApp",
+            "mainClass": "RPNApp",
             "projectName": "RCP-Assignment_7a049c83"
         }
     ]

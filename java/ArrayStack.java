@@ -1,6 +1,6 @@
-package week10;
+package RPNCalculator;
 import java.util.*;
-
+import RPNCalculator.Stack;
 /**
  * ArrayStack class.
  * @author Max, Harry, Tom.

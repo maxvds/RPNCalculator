@@ -1,5 +1,6 @@
-package week10;
+package RPNCalculator;
 import java.util.*;
+import RPNCalculator.ArrayStack;
 
 /**
  * Application class which runs the RPN calculator. 
